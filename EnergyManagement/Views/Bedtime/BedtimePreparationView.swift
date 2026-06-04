@@ -33,10 +33,7 @@ struct BedtimePreparationView: View {
             }
 
             if let message = viewModel.completionMessage {
-                Text(message)
-                    .font(TypographyTokens.caption)
-                    .foregroundStyle(ColorTokens.secondaryText)
-                    .fixedSize(horizontal: false, vertical: true)
+                StatusBanner(message, tone: .positive)
             }
 
             if let errorMessage = viewModel.errorMessage {
@@ -52,15 +49,13 @@ struct BedtimePreparationView: View {
                     _ = viewModel.confirmBedtime()
                 }
             }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(PrimaryActionButton())
             .controlSize(.large)
             .accessibilityIdentifier("confirmBedtimeButton")
 
             Spacer()
         }
-        .padding(SpacingTokens.screenPadding)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background(ColorTokens.warmWhite)
+        .appSurface()
         .accessibilityIdentifier("bedtimePreparation")
     }
 }

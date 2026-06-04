@@ -37,7 +37,7 @@ struct ContentView: View {
             }
         case .home:
             HomeView(
-                viewModel: .placeholder(),
+                viewModel: .launchPlaceholder(),
                 onStartBedtime: { route = .bedtimePreparation },
                 onStartWake: { route = .wakeConfirmation },
                 onShowReports: { route = .reports }

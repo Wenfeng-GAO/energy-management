@@ -29,12 +29,7 @@ struct HomeView: View {
                 .foregroundStyle(ColorTokens.secondaryText)
 
             if let notificationPrompt = viewModel.notificationPrompt {
-                Text(notificationPrompt)
-                    .font(TypographyTokens.caption)
-                    .foregroundStyle(ColorTokens.secondaryText)
-                    .padding(SpacingTokens.medium)
-                    .background(ColorTokens.paper)
-                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                StatusBanner(notificationPrompt, tone: .warning)
                     .accessibilityIdentifier("homeNotificationPrompt")
             }
 
@@ -53,12 +48,12 @@ struct HomeView: View {
             switch viewModel.ritualState {
             case .bedtimePreparation:
                 Button("开始睡前准备", action: onStartBedtime)
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(PrimaryActionButton())
                     .controlSize(.large)
                     .accessibilityIdentifier("startBedtimeButton")
             case .wakeConfirmation:
                 Button("确认起床", action: onStartWake)
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(PrimaryActionButton())
                     .controlSize(.large)
                     .accessibilityIdentifier("startWakeButton")
             case .waiting, .missedWakeConfirmation:
@@ -66,15 +61,13 @@ struct HomeView: View {
             }
 
             Button("查看报告", action: onShowReports)
-                .buttonStyle(.bordered)
+                .buttonStyle(SecondaryActionButton())
                 .controlSize(.large)
                 .accessibilityIdentifier("showReportsButton")
 
             Spacer()
         }
-        .padding(SpacingTokens.screenPadding)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background(ColorTokens.warmWhite)
+        .appSurface()
         .accessibilityIdentifier("homeEntry")
     }
 }

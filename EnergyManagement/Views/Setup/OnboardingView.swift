@@ -17,15 +17,13 @@ struct OnboardingView: View {
                 .fixedSize(horizontal: false, vertical: true)
 
             Button("开始设置", action: onStart)
-                .buttonStyle(.borderedProminent)
+                .buttonStyle(PrimaryActionButton())
                 .controlSize(.large)
                 .accessibilityIdentifier("startSetupButton")
 
             Spacer()
         }
-        .padding(SpacingTokens.screenPadding)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-        .background(ColorTokens.warmWhite)
+        .appSurface()
         .accessibilityIdentifier("onboardingEntry")
     }
 }

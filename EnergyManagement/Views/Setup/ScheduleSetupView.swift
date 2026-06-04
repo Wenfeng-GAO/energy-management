@@ -24,10 +24,7 @@ struct ScheduleSetupView: View {
             .font(TypographyTokens.body)
 
             if let prompt = viewModel.notificationPrompt {
-                Text(prompt)
-                    .font(TypographyTokens.caption)
-                    .foregroundStyle(ColorTokens.secondaryText)
-                    .fixedSize(horizontal: false, vertical: true)
+                StatusBanner(prompt, tone: .neutral)
                     .accessibilityIdentifier("notificationPrompt")
             }
 
@@ -44,15 +41,13 @@ struct ScheduleSetupView: View {
                     }
                 }
             }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(PrimaryActionButton())
             .controlSize(.large)
             .accessibilityIdentifier("saveScheduleButton")
 
             Spacer()
         }
-        .padding(SpacingTokens.screenPadding)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background(ColorTokens.warmWhite)
+        .appSurface()
         .accessibilityIdentifier("scheduleSetup")
     }
 }

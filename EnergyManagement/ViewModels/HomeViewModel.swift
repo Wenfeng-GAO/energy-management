@@ -60,6 +60,13 @@ struct HomeViewModel: Equatable {
         )
     }
 
+    static func launchPlaceholder() -> HomeViewModel {
+        if ProcessInfo.processInfo.arguments.contains("-homeNotificationDenied") {
+            return placeholder(notificationStatus: NotificationStatus(authorizationState: .denied))
+        }
+        return placeholder()
+    }
+
     private static func ritualState(
         scheduleSnapshot: ScheduleSnapshot,
         now: Date,

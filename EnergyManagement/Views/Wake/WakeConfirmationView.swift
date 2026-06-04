@@ -20,6 +20,7 @@ struct WakeConfirmationView: View {
                 .font(TypographyTokens.body)
                 .foregroundStyle(ColorTokens.secondaryText)
                 .fixedSize(horizontal: false, vertical: true)
+                .accessibilityIdentifier("wakeStatusMessage")
 
             if viewModel.state == .confirmed {
                 WakePromptsView(prompts: viewModel.prompts)
@@ -39,15 +40,13 @@ struct WakeConfirmationView: View {
                     onDone()
                 }
             }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(PrimaryActionButton())
             .controlSize(.large)
             .accessibilityIdentifier("wakePrimaryButton")
 
             Spacer()
         }
-        .padding(SpacingTokens.screenPadding)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background(ColorTokens.warmWhite)
+        .appSurface()
         .accessibilityIdentifier("wakeConfirmation")
     }
 
