@@ -10,4 +10,5 @@ enum AppRoute: Equatable {
     case home(HomeRouteContext)
     case bedtimePreparation
     case wakeConfirmation
+    case reports
 }

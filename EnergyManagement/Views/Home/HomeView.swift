@@ -4,15 +4,18 @@ struct HomeView: View {
     let viewModel: HomeViewModel
     let onStartBedtime: () -> Void
     let onStartWake: () -> Void
+    let onShowReports: () -> Void
 
     init(
         viewModel: HomeViewModel,
         onStartBedtime: @escaping () -> Void = {},
-        onStartWake: @escaping () -> Void = {}
+        onStartWake: @escaping () -> Void = {},
+        onShowReports: @escaping () -> Void = {}
     ) {
         self.viewModel = viewModel
         self.onStartBedtime = onStartBedtime
         self.onStartWake = onStartWake
+        self.onShowReports = onShowReports
     }
 
     var body: some View {
@@ -61,6 +64,11 @@ struct HomeView: View {
             case .waiting, .missedWakeConfirmation:
                 EmptyView()
             }
+
+            Button("查看报告", action: onShowReports)
+                .buttonStyle(.bordered)
+                .controlSize(.large)
+                .accessibilityIdentifier("showReportsButton")
 
             Spacer()
         }

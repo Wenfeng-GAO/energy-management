@@ -39,7 +39,8 @@ struct ContentView: View {
             HomeView(
                 viewModel: .placeholder(),
                 onStartBedtime: { route = .bedtimePreparation },
-                onStartWake: { route = .wakeConfirmation }
+                onStartWake: { route = .wakeConfirmation },
+                onShowReports: { route = .reports }
             )
         case .bedtimePreparation:
             BedtimePreparationView {
@@ -47,6 +48,10 @@ struct ContentView: View {
             }
         case .wakeConfirmation:
             WakeConfirmationView {
+                route = .home(.normal)
+            }
+        case .reports:
+            ReportsView {
                 route = .home(.normal)
             }
         }
@@ -62,6 +67,11 @@ struct ContentView: View {
         }
         if arguments.contains("-startMissedWake") {
             return .wakeConfirmation
+        }
+        if arguments.contains("-startReports")
+            || arguments.contains("-startReportsEmpty")
+            || arguments.contains("-startReportsMissed") {
+            return .reports
         }
         return .home(.normal)
     }
