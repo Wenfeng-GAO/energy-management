@@ -1,0 +1,566 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		36B7FDB1DACFA0B7DD8AD3A3 /* TypographyTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF038605A183597D0532ED9 /* TypographyTokens.swift */; };
+		71643700B8711F3519539FD2 /* SpacingTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FF7A36D6E5392B70240F6D /* SpacingTokens.swift */; };
+		8E74CF891D2AA001B136F6C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892A7D2064E0D93E2484D7E1 /* ContentView.swift */; };
+		91653208E191813572BE5A31 /* EnergyManagementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB6F44B2C2CFEE4DF32041 /* EnergyManagementTests.swift */; };
+		955E93E955113691294C12C0 /* EnergyManagementApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7C8B32E33C34F2F894C4D5 /* EnergyManagementApp.swift */; };
+		B86FEDC37B3789F09F08803F /* ColorTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC4B1C3EAB5AE9DF779F222 /* ColorTokens.swift */; };
+		F427436458A2864FE158DE83 /* EnergyManagementUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DF5DB3F87EF6ECDC2E514E /* EnergyManagementUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2E771CDCCB831922028EA963 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 891AE7A9B7A0CC41C70CFF16 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE407E4540BAAC26B8F0C550;
+			remoteInfo = EnergyManagement;
+		};
+		47554A4404CE13F52D11FE06 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 891AE7A9B7A0CC41C70CFF16 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE407E4540BAAC26B8F0C550;
+			remoteInfo = EnergyManagement;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		18BB6F44B2C2CFEE4DF32041 /* EnergyManagementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyManagementTests.swift; sourceTree = "<group>"; };
+		3DC4B1C3EAB5AE9DF779F222 /* ColorTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTokens.swift; sourceTree = "<group>"; };
+		543EEF9D65A7682232F3C37F /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		549706B04BA9738FE43FED9A /* EnergyManagement.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = EnergyManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		67E4E78162EFD4FA9ECC7FEF /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		68D3EE56AE5595E43D12D163 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		69DF5DB3F87EF6ECDC2E514E /* EnergyManagementUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyManagementUITests.swift; sourceTree = "<group>"; };
+		892A7D2064E0D93E2484D7E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		930C06FF456D77828F3252E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9EDC6C8EDDC31005CEB407D5 /* EnergyManagementUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = EnergyManagementUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE727EDBB6AEB0614AB7B78E /* EnergyManagementTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = EnergyManagementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBF038605A183597D0532ED9 /* TypographyTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyTokens.swift; sourceTree = "<group>"; };
+		C52D4993E1A8AFD86F476519 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		DD7C8B32E33C34F2F894C4D5 /* EnergyManagementApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyManagementApp.swift; sourceTree = "<group>"; };
+		F8FF7A36D6E5392B70240F6D /* SpacingTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingTokens.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		092E4B94628E22FB7AA9FE0B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				67E4E78162EFD4FA9ECC7FEF /* .gitkeep */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		14A204489D88D0A48C628963 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				543EEF9D65A7682232F3C37F /* .gitkeep */,
+				930C06FF456D77828F3252E6 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		17DBDD89BD627CC80BED98EC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				68D3EE56AE5595E43D12D163 /* .gitkeep */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2CFC38CF0F443BD7DC2B2870 /* EnergyManagement */ = {
+			isa = PBXGroup;
+			children = (
+				892A7D2064E0D93E2484D7E1 /* ContentView.swift */,
+				DD7C8B32E33C34F2F894C4D5 /* EnergyManagementApp.swift */,
+				FA6C32DF344239147475000A /* DesignSystem */,
+				092E4B94628E22FB7AA9FE0B /* Models */,
+				14A204489D88D0A48C628963 /* Resources */,
+				9B73FA1E1B8D60528A10DAEB /* Services */,
+				17DBDD89BD627CC80BED98EC /* Views */,
+			);
+			path = EnergyManagement;
+			sourceTree = "<group>";
+		};
+		631D0F6D1C4E462AB5EE36F1 /* EnergyManagementUITests */ = {
+			isa = PBXGroup;
+			children = (
+				69DF5DB3F87EF6ECDC2E514E /* EnergyManagementUITests.swift */,
+			);
+			path = EnergyManagementUITests;
+			sourceTree = "<group>";
+		};
+		7D24238CCDC57DE214A0B941 = {
+			isa = PBXGroup;
+			children = (
+				2CFC38CF0F443BD7DC2B2870 /* EnergyManagement */,
+				D9EB8A1F897C3B5F5A217ED2 /* EnergyManagementTests */,
+				631D0F6D1C4E462AB5EE36F1 /* EnergyManagementUITests */,
+				AC13F161469977C9B8EA61BA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9B73FA1E1B8D60528A10DAEB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C52D4993E1A8AFD86F476519 /* .gitkeep */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		AC13F161469977C9B8EA61BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				549706B04BA9738FE43FED9A /* EnergyManagement.app */,
+				AE727EDBB6AEB0614AB7B78E /* EnergyManagementTests.xctest */,
+				9EDC6C8EDDC31005CEB407D5 /* EnergyManagementUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D9EB8A1F897C3B5F5A217ED2 /* EnergyManagementTests */ = {
+			isa = PBXGroup;
+			children = (
+				18BB6F44B2C2CFEE4DF32041 /* EnergyManagementTests.swift */,
+			);
+			path = EnergyManagementTests;
+			sourceTree = "<group>";
+		};
+		FA6C32DF344239147475000A /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				3DC4B1C3EAB5AE9DF779F222 /* ColorTokens.swift */,
+				F8FF7A36D6E5392B70240F6D /* SpacingTokens.swift */,
+				BBF038605A183597D0532ED9 /* TypographyTokens.swift */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A6EAA90251DA4B2600F53128 /* EnergyManagementUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1A9A3052D5AAA25594B1BA3 /* Build configuration list for PBXNativeTarget "EnergyManagementUITests" */;
+			buildPhases = (
+				51421BEDB74A3493F55BBF80 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F5A90C8B4E386351AAFD2464 /* PBXTargetDependency */,
+			);
+			name = EnergyManagementUITests;
+			packageProductDependencies = (
+			);
+			productName = EnergyManagementUITests;
+			productReference = 9EDC6C8EDDC31005CEB407D5 /* EnergyManagementUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		E362CE12E5384052D0817516 /* EnergyManagementTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20A3D46F54391D21EF7097FD /* Build configuration list for PBXNativeTarget "EnergyManagementTests" */;
+			buildPhases = (
+				1365602716DBC2CF5746EF6E /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				63A3D68B9CEA6E2AD8329488 /* PBXTargetDependency */,
+			);
+			name = EnergyManagementTests;
+			packageProductDependencies = (
+			);
+			productName = EnergyManagementTests;
+			productReference = AE727EDBB6AEB0614AB7B78E /* EnergyManagementTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FE407E4540BAAC26B8F0C550 /* EnergyManagement */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F48EA9D7E454895B8D9D5188 /* Build configuration list for PBXNativeTarget "EnergyManagement" */;
+			buildPhases = (
+				31CB91A42523C7C1471D20CD /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EnergyManagement;
+			packageProductDependencies = (
+			);
+			productName = EnergyManagement;
+			productReference = 549706B04BA9738FE43FED9A /* EnergyManagement.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		891AE7A9B7A0CC41C70CFF16 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					A6EAA90251DA4B2600F53128 = {
+						DevelopmentTeam = "";
+						TestTargetID = FE407E4540BAAC26B8F0C550;
+					};
+					E362CE12E5384052D0817516 = {
+						DevelopmentTeam = "";
+					};
+					FE407E4540BAAC26B8F0C550 = {
+						DevelopmentTeam = "";
+					};
+				};
+			};
+			buildConfigurationList = 334E5947BC43339B6EA9BF7F /* Build configuration list for PBXProject "EnergyManagement" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 7D24238CCDC57DE214A0B941;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FE407E4540BAAC26B8F0C550 /* EnergyManagement */,
+				E362CE12E5384052D0817516 /* EnergyManagementTests */,
+				A6EAA90251DA4B2600F53128 /* EnergyManagementUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1365602716DBC2CF5746EF6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91653208E191813572BE5A31 /* EnergyManagementTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31CB91A42523C7C1471D20CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B86FEDC37B3789F09F08803F /* ColorTokens.swift in Sources */,
+				8E74CF891D2AA001B136F6C2 /* ContentView.swift in Sources */,
+				955E93E955113691294C12C0 /* EnergyManagementApp.swift in Sources */,
+				71643700B8711F3519539FD2 /* SpacingTokens.swift in Sources */,
+				36B7FDB1DACFA0B7DD8AD3A3 /* TypographyTokens.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51421BEDB74A3493F55BBF80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F427436458A2864FE158DE83 /* EnergyManagementUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		63A3D68B9CEA6E2AD8329488 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE407E4540BAAC26B8F0C550 /* EnergyManagement */;
+			targetProxy = 47554A4404CE13F52D11FE06 /* PBXContainerItemProxy */;
+		};
+		F5A90C8B4E386351AAFD2464 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE407E4540BAAC26B8F0C550 /* EnergyManagement */;
+			targetProxy = 2E771CDCCB831922028EA963 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0A5D90D404CA8F483926B830 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = EnergyManagement/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "睡眠能量";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wenfenggao.EnergyManagement;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2512CC0B90F460ECE5893F05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2523DADBB13887626A9D9493 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wenfenggao.EnergyManagementTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EnergyManagement.app/EnergyManagement";
+			};
+			name = Release;
+		};
+		25FE9B3A1045010BEDBCF250 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wenfenggao.EnergyManagementTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EnergyManagement.app/EnergyManagement";
+			};
+			name = Debug;
+		};
+		2BE3AAEB516B153DB387A51E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = EnergyManagement/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "睡眠能量";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wenfenggao.EnergyManagement;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		70B271C0FC0707F5C227EA1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		AC3F9D6C2FDAA1452BA62CEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wenfenggao.EnergyManagementUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = EnergyManagement;
+			};
+			name = Debug;
+		};
+		CA316DC4DDE54C90EAD05CE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wenfenggao.EnergyManagementUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = EnergyManagement;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		20A3D46F54391D21EF7097FD /* Build configuration list for PBXNativeTarget "EnergyManagementTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				25FE9B3A1045010BEDBCF250 /* Debug */,
+				2523DADBB13887626A9D9493 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		334E5947BC43339B6EA9BF7F /* Build configuration list for PBXProject "EnergyManagement" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2512CC0B90F460ECE5893F05 /* Debug */,
+				70B271C0FC0707F5C227EA1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D1A9A3052D5AAA25594B1BA3 /* Build configuration list for PBXNativeTarget "EnergyManagementUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC3F9D6C2FDAA1452BA62CEC /* Debug */,
+				CA316DC4DDE54C90EAD05CE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F48EA9D7E454895B8D9D5188 /* Build configuration list for PBXNativeTarget "EnergyManagement" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BE3AAEB516B153DB387A51E /* Debug */,
+				0A5D90D404CA8F483926B830 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 891AE7A9B7A0CC41C70CFF16 /* Project object */;
+}

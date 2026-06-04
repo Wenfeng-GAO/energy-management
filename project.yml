@@ -1,0 +1,56 @@
+name: EnergyManagement
+options:
+  bundleIdPrefix: com.wenfenggao
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: ""
+targets:
+  EnergyManagement:
+    type: application
+    platform: iOS
+    sources:
+      - path: EnergyManagement
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.wenfenggao.EnergyManagement
+        INFOPLIST_KEY_CFBundleDisplayName: 睡眠能量
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
+        TARGETED_DEVICE_FAMILY: "1,2"
+    info:
+      path: EnergyManagement/Resources/Info.plist
+      properties:
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UILaunchScreen: {}
+  EnergyManagementTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: EnergyManagementTests
+    dependencies:
+      - target: EnergyManagement
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.wenfenggao.EnergyManagementTests
+  EnergyManagementUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: EnergyManagementUITests
+    dependencies:
+      - target: EnergyManagement
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.wenfenggao.EnergyManagementUITests
