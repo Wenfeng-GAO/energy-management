@@ -12,24 +12,32 @@
 		11B30EB070428FD76906B6F0 /* NotificationPermissionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856CF22E4AB640266A535CD /* NotificationPermissionServiceTests.swift */; };
 		1BEC72E0172B2C73397029B9 /* NotificationPermissionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6086B298814033C5B6BA81 /* NotificationPermissionService.swift */; };
 		36B7FDB1DACFA0B7DD8AD3A3 /* TypographyTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF038605A183597D0532ED9 /* TypographyTokens.swift */; };
+		3BAE626BDE30757613F85A34 /* SetupViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5DBE304B2B359A6D514DB7 /* SetupViewModelTests.swift */; };
+		447A001509DEEB782153ACA5 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9A9637D05C2FA7E7D46585 /* OnboardingView.swift */; };
 		4B670CF811188CA3489D4CE5 /* NotificationRouteResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449480EA4D1CBECDCF572C90 /* NotificationRouteResolver.swift */; };
 		4E6F5AF39604DC8A6B2BE51B /* WakeWindowPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87880E3EFE94AC1114FB08 /* WakeWindowPolicy.swift */; };
+		4EAD85A074FDEF98FD217EF6 /* ScheduleSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30673388C4E7D241E54E821 /* ScheduleSetupView.swift */; };
+		5C930A6FB36BE813FB139243 /* SetupAndHomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4087B7E02126380BF427E3 /* SetupAndHomeUITests.swift */; };
 		5D3C979861F939037B87A907 /* SleepReportCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5D652A4B232F4D5FD1B50 /* SleepReportCalculator.swift */; };
 		61AA9E8D4C29C77EE1B4D383 /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492E61E3FC893BFD7C1B7D43 /* AppRoute.swift */; };
 		6448BBA4F9FA940CB2516EC6 /* ReportSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA812480535EDEF17C3EE8B1 /* ReportSummary.swift */; };
 		688C817F088974EDBE9AD587 /* SleepReportCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3030B86FA9A27465B338C3 /* SleepReportCalculatorTests.swift */; };
 		71643700B8711F3519539FD2 /* SpacingTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FF7A36D6E5392B70240F6D /* SpacingTokens.swift */; };
+		75DAFFFE24308E1B6413D239 /* SetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8725622F35704CE27F1EADD /* SetupViewModel.swift */; };
+		7F934DCAFCDEE8909AF143AB /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8DFF13D9D811ED3588C35C /* HomeViewModelTests.swift */; };
 		84AA7CC4879E5EF0052F3967 /* WakeWindowPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B5D048385ADC8867A21F /* WakeWindowPolicyTests.swift */; };
 		8E74CF891D2AA001B136F6C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892A7D2064E0D93E2484D7E1 /* ContentView.swift */; };
 		91653208E191813572BE5A31 /* EnergyManagementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB6F44B2C2CFEE4DF32041 /* EnergyManagementTests.swift */; };
 		94EAD181DD595A2A7357CA96 /* SleepNotificationSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5364FF92CF49173C2FEFCB /* SleepNotificationSchedulerTests.swift */; };
 		955E93E955113691294C12C0 /* EnergyManagementApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7C8B32E33C34F2F894C4D5 /* EnergyManagementApp.swift */; };
 		A1D55A2071699D5232E24B88 /* SleepDataStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B4D43CC0B6BF593854BA85 /* SleepDataStoreTests.swift */; };
+		A790C3015C9AF8C0A5D2289A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C568498AAD7124330F1A555D /* HomeView.swift */; };
 		B1E5C2A03791CD6B86A37F6D /* SleepSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2695BB6D0172FFDD57F7FF /* SleepSchedule.swift */; };
 		B73A51A50300661E8D0B404C /* SleepDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3471F6C402FB7B63FD628113 /* SleepDataStore.swift */; };
 		B86FEDC37B3789F09F08803F /* ColorTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC4B1C3EAB5AE9DF779F222 /* ColorTokens.swift */; };
 		D0854E04965FE496883CD4B9 /* SleepNotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165403EB9033FD8E9BCC0EDF /* SleepNotificationScheduler.swift */; };
 		D71A6A068ED447921F0A4C37 /* SleepRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010A895CF272E60C0DBCD68 /* SleepRecord.swift */; };
+		DA073697D4EEEC0CECC0CC0B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0528528B38B5209EA5B549D /* HomeViewModel.swift */; };
 		F427436458A2864FE158DE83 /* EnergyManagementUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DF5DB3F87EF6ECDC2E514E /* EnergyManagementUITests.swift */; };
 		FE072B34492F85344DAC28B7 /* NotificationRouteResolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3805054A5B007922DFFCCF85 /* NotificationRouteResolverTests.swift */; };
 /* End PBXBuildFile section */
@@ -52,7 +60,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D5DBE304B2B359A6D514DB7 /* SetupViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewModelTests.swift; sourceTree = "<group>"; };
 		0D6086B298814033C5B6BA81 /* NotificationPermissionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissionService.swift; sourceTree = "<group>"; };
+		0F9A9637D05C2FA7E7D46585 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		12B4D43CC0B6BF593854BA85 /* SleepDataStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDataStoreTests.swift; sourceTree = "<group>"; };
 		165403EB9033FD8E9BCC0EDF /* SleepNotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepNotificationScheduler.swift; sourceTree = "<group>"; };
 		18BB6F44B2C2CFEE4DF32041 /* EnergyManagementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyManagementTests.swift; sourceTree = "<group>"; };
@@ -82,9 +92,15 @@
 		BD3030B86FA9A27465B338C3 /* SleepReportCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepReportCalculatorTests.swift; sourceTree = "<group>"; };
 		C4E5D652A4B232F4D5FD1B50 /* SleepReportCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepReportCalculator.swift; sourceTree = "<group>"; };
 		C52D4993E1A8AFD86F476519 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		C568498AAD7124330F1A555D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C8200E0E97463A1311A487D7 /* TestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupport.swift; sourceTree = "<group>"; };
+		D8725622F35704CE27F1EADD /* SetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewModel.swift; sourceTree = "<group>"; };
+		DA4087B7E02126380BF427E3 /* SetupAndHomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupAndHomeUITests.swift; sourceTree = "<group>"; };
 		DD7C8B32E33C34F2F894C4D5 /* EnergyManagementApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyManagementApp.swift; sourceTree = "<group>"; };
+		E0528528B38B5209EA5B549D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		E30673388C4E7D241E54E821 /* ScheduleSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSetupView.swift; sourceTree = "<group>"; };
 		F8FF7A36D6E5392B70240F6D /* SpacingTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingTokens.swift; sourceTree = "<group>"; };
+		FF8DFF13D9D811ED3588C35C /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -114,6 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				68D3EE56AE5595E43D12D163 /* .gitkeep */,
+				D96B16ED3AF5E12671790F3A /* Home */,
+				AC7A44D1D3AFBD154D0A53FA /* Setup */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -127,6 +145,7 @@
 				092E4B94628E22FB7AA9FE0B /* Models */,
 				14A204489D88D0A48C628963 /* Resources */,
 				9B73FA1E1B8D60528A10DAEB /* Services */,
+				BEE223853B1C0E3EAB152047 /* ViewModels */,
 				17DBDD89BD627CC80BED98EC /* Views */,
 			);
 			path = EnergyManagement;
@@ -136,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				69DF5DB3F87EF6ECDC2E514E /* EnergyManagementUITests.swift */,
+				DA4087B7E02126380BF427E3 /* SetupAndHomeUITests.swift */,
 			);
 			path = EnergyManagementUITests;
 			sourceTree = "<group>";
@@ -174,12 +194,40 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		AC7A44D1D3AFBD154D0A53FA /* Setup */ = {
+			isa = PBXGroup;
+			children = (
+				0F9A9637D05C2FA7E7D46585 /* OnboardingView.swift */,
+				E30673388C4E7D241E54E821 /* ScheduleSetupView.swift */,
+			);
+			path = Setup;
+			sourceTree = "<group>";
+		};
+		BEE223853B1C0E3EAB152047 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E0528528B38B5209EA5B549D /* HomeViewModel.swift */,
+				D8725622F35704CE27F1EADD /* SetupViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D96B16ED3AF5E12671790F3A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C568498AAD7124330F1A555D /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		D9EB8A1F897C3B5F5A217ED2 /* EnergyManagementTests */ = {
 			isa = PBXGroup;
 			children = (
 				18BB6F44B2C2CFEE4DF32041 /* EnergyManagementTests.swift */,
+				FF8DFF13D9D811ED3588C35C /* HomeViewModelTests.swift */,
 				7856CF22E4AB640266A535CD /* NotificationPermissionServiceTests.swift */,
 				3805054A5B007922DFFCCF85 /* NotificationRouteResolverTests.swift */,
+				0D5DBE304B2B359A6D514DB7 /* SetupViewModelTests.swift */,
 				12B4D43CC0B6BF593854BA85 /* SleepDataStoreTests.swift */,
 				1E5364FF92CF49173C2FEFCB /* SleepNotificationSchedulerTests.swift */,
 				BD3030B86FA9A27465B338C3 /* SleepReportCalculatorTests.swift */,
@@ -303,8 +351,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				91653208E191813572BE5A31 /* EnergyManagementTests.swift in Sources */,
+				7F934DCAFCDEE8909AF143AB /* HomeViewModelTests.swift in Sources */,
 				11B30EB070428FD76906B6F0 /* NotificationPermissionServiceTests.swift in Sources */,
 				FE072B34492F85344DAC28B7 /* NotificationRouteResolverTests.swift in Sources */,
+				3BAE626BDE30757613F85A34 /* SetupViewModelTests.swift in Sources */,
 				A1D55A2071699D5232E24B88 /* SleepDataStoreTests.swift in Sources */,
 				94EAD181DD595A2A7357CA96 /* SleepNotificationSchedulerTests.swift in Sources */,
 				688C817F088974EDBE9AD587 /* SleepReportCalculatorTests.swift in Sources */,
@@ -321,10 +371,15 @@
 				B86FEDC37B3789F09F08803F /* ColorTokens.swift in Sources */,
 				8E74CF891D2AA001B136F6C2 /* ContentView.swift in Sources */,
 				955E93E955113691294C12C0 /* EnergyManagementApp.swift in Sources */,
+				A790C3015C9AF8C0A5D2289A /* HomeView.swift in Sources */,
+				DA073697D4EEEC0CECC0CC0B /* HomeViewModel.swift in Sources */,
 				1BEC72E0172B2C73397029B9 /* NotificationPermissionService.swift in Sources */,
 				4B670CF811188CA3489D4CE5 /* NotificationRouteResolver.swift in Sources */,
 				0D4E713E726732D983723168 /* NotificationStatus.swift in Sources */,
+				447A001509DEEB782153ACA5 /* OnboardingView.swift in Sources */,
 				6448BBA4F9FA940CB2516EC6 /* ReportSummary.swift in Sources */,
+				4EAD85A074FDEF98FD217EF6 /* ScheduleSetupView.swift in Sources */,
+				75DAFFFE24308E1B6413D239 /* SetupViewModel.swift in Sources */,
 				B73A51A50300661E8D0B404C /* SleepDataStore.swift in Sources */,
 				D0854E04965FE496883CD4B9 /* SleepNotificationScheduler.swift in Sources */,
 				D71A6A068ED447921F0A4C37 /* SleepRecord.swift in Sources */,
@@ -341,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F427436458A2864FE158DE83 /* EnergyManagementUITests.swift in Sources */,
+				5C930A6FB36BE813FB139243 /* SetupAndHomeUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

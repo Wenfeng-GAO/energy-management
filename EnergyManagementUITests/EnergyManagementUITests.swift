@@ -7,7 +7,7 @@ final class EnergyManagementUITests: XCTestCase {
 
     func testLaunchWithoutSavedSettingsShowsFirstRunSetupEntry() throws {
         let app = XCUIApplication()
-        app.launchArguments = ["-hasCompletedInitialSetup", "false"]
+        app.launchArguments = ["-resetInitialSetup"]
         app.launch()
 
         XCTAssertTrue(app.staticTexts["睡眠能量"].waitForExistence(timeout: 5))

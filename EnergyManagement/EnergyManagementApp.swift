@@ -6,6 +6,12 @@ import UserNotifications
 struct EnergyManagementApp: App {
     @UIApplicationDelegateAdaptor(AppNotificationDelegate.self) private var appDelegate
 
+    init() {
+        if ProcessInfo.processInfo.arguments.contains("-resetInitialSetup") {
+            UserDefaults.standard.set(false, forKey: "hasCompletedInitialSetup")
+        }
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()
