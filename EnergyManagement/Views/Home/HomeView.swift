@@ -2,6 +2,18 @@ import SwiftUI
 
 struct HomeView: View {
     let viewModel: HomeViewModel
+    let onStartBedtime: () -> Void
+    let onStartWake: () -> Void
+
+    init(
+        viewModel: HomeViewModel,
+        onStartBedtime: @escaping () -> Void = {},
+        onStartWake: @escaping () -> Void = {}
+    ) {
+        self.viewModel = viewModel
+        self.onStartBedtime = onStartBedtime
+        self.onStartWake = onStartWake
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: SpacingTokens.large) {
@@ -34,6 +46,21 @@ struct HomeView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             .accessibilityIdentifier("homeRitualState")
+
+            switch viewModel.ritualState {
+            case .bedtimePreparation:
+                Button("开始睡前准备", action: onStartBedtime)
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .accessibilityIdentifier("startBedtimeButton")
+            case .wakeConfirmation:
+                Button("确认起床", action: onStartWake)
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .accessibilityIdentifier("startWakeButton")
+            case .waiting, .missedWakeConfirmation:
+                EmptyView()
+            }
 
             Spacer()
         }

@@ -11,6 +11,7 @@
 		0D4E713E726732D983723168 /* NotificationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312245DDB3BA1DF4B825E4EF /* NotificationStatus.swift */; };
 		11B30EB070428FD76906B6F0 /* NotificationPermissionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856CF22E4AB640266A535CD /* NotificationPermissionServiceTests.swift */; };
 		1BEC72E0172B2C73397029B9 /* NotificationPermissionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6086B298814033C5B6BA81 /* NotificationPermissionService.swift */; };
+		26AA04C4DA86283935C47673 /* BedtimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D290440FA9F6B188E2DB9D2 /* BedtimeViewModel.swift */; };
 		36B7FDB1DACFA0B7DD8AD3A3 /* TypographyTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF038605A183597D0532ED9 /* TypographyTokens.swift */; };
 		3BAE626BDE30757613F85A34 /* SetupViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5DBE304B2B359A6D514DB7 /* SetupViewModelTests.swift */; };
 		447A001509DEEB782153ACA5 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9A9637D05C2FA7E7D46585 /* OnboardingView.swift */; };
@@ -24,22 +25,29 @@
 		688C817F088974EDBE9AD587 /* SleepReportCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3030B86FA9A27465B338C3 /* SleepReportCalculatorTests.swift */; };
 		71643700B8711F3519539FD2 /* SpacingTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FF7A36D6E5392B70240F6D /* SpacingTokens.swift */; };
 		75DAFFFE24308E1B6413D239 /* SetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8725622F35704CE27F1EADD /* SetupViewModel.swift */; };
+		7C93DB44A5F5ED41B0E2EB7E /* BedtimePreparationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45ADF0247BF2AB3D0964DDAB /* BedtimePreparationView.swift */; };
+		7D15D7E254B974F66AC8C96A /* WakeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FD5FEBA0A563F40AEF2B75 /* WakeViewModelTests.swift */; };
 		7F934DCAFCDEE8909AF143AB /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8DFF13D9D811ED3588C35C /* HomeViewModelTests.swift */; };
 		84AA7CC4879E5EF0052F3967 /* WakeWindowPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B5D048385ADC8867A21F /* WakeWindowPolicyTests.swift */; };
+		8B6CD52B840BF8D09B5859C8 /* WakeConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192C5C8C019DC26C676B65C9 /* WakeConfirmationView.swift */; };
 		8E74CF891D2AA001B136F6C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892A7D2064E0D93E2484D7E1 /* ContentView.swift */; };
 		91653208E191813572BE5A31 /* EnergyManagementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB6F44B2C2CFEE4DF32041 /* EnergyManagementTests.swift */; };
 		94EAD181DD595A2A7357CA96 /* SleepNotificationSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5364FF92CF49173C2FEFCB /* SleepNotificationSchedulerTests.swift */; };
 		955E93E955113691294C12C0 /* EnergyManagementApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7C8B32E33C34F2F894C4D5 /* EnergyManagementApp.swift */; };
+		9F6C0D851E25997F49A4E98D /* WakePromptsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15558E934B15FF61D3F4AD9 /* WakePromptsView.swift */; };
 		A1D55A2071699D5232E24B88 /* SleepDataStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B4D43CC0B6BF593854BA85 /* SleepDataStoreTests.swift */; };
 		A790C3015C9AF8C0A5D2289A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C568498AAD7124330F1A555D /* HomeView.swift */; };
 		B1E5C2A03791CD6B86A37F6D /* SleepSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2695BB6D0172FFDD57F7FF /* SleepSchedule.swift */; };
+		B277587188394BB5D03F22A7 /* WakeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9764A14AFED76BCEF577E7 /* WakeViewModel.swift */; };
 		B73A51A50300661E8D0B404C /* SleepDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3471F6C402FB7B63FD628113 /* SleepDataStore.swift */; };
 		B86FEDC37B3789F09F08803F /* ColorTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC4B1C3EAB5AE9DF779F222 /* ColorTokens.swift */; };
+		C73ECEA96141EC5E8ADE06BA /* BedtimeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7B1811BC28DF3A34C38B15 /* BedtimeViewModelTests.swift */; };
 		D0854E04965FE496883CD4B9 /* SleepNotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165403EB9033FD8E9BCC0EDF /* SleepNotificationScheduler.swift */; };
 		D71A6A068ED447921F0A4C37 /* SleepRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010A895CF272E60C0DBCD68 /* SleepRecord.swift */; };
 		DA073697D4EEEC0CECC0CC0B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0528528B38B5209EA5B549D /* HomeViewModel.swift */; };
 		F427436458A2864FE158DE83 /* EnergyManagementUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DF5DB3F87EF6ECDC2E514E /* EnergyManagementUITests.swift */; };
 		FE072B34492F85344DAC28B7 /* NotificationRouteResolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3805054A5B007922DFFCCF85 /* NotificationRouteResolverTests.swift */; };
+		FE68F4A9B3F5D74EBB5D89B8 /* RitualFlowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E34A47F6F7AA51B9892D8D /* RitualFlowUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,28 +74,34 @@
 		12B4D43CC0B6BF593854BA85 /* SleepDataStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDataStoreTests.swift; sourceTree = "<group>"; };
 		165403EB9033FD8E9BCC0EDF /* SleepNotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepNotificationScheduler.swift; sourceTree = "<group>"; };
 		18BB6F44B2C2CFEE4DF32041 /* EnergyManagementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyManagementTests.swift; sourceTree = "<group>"; };
+		192C5C8C019DC26C676B65C9 /* WakeConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeConfirmationView.swift; sourceTree = "<group>"; };
 		1E5364FF92CF49173C2FEFCB /* SleepNotificationSchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepNotificationSchedulerTests.swift; sourceTree = "<group>"; };
 		312245DDB3BA1DF4B825E4EF /* NotificationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationStatus.swift; sourceTree = "<group>"; };
 		3471F6C402FB7B63FD628113 /* SleepDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDataStore.swift; sourceTree = "<group>"; };
 		3805054A5B007922DFFCCF85 /* NotificationRouteResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRouteResolverTests.swift; sourceTree = "<group>"; };
 		3DC4B1C3EAB5AE9DF779F222 /* ColorTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTokens.swift; sourceTree = "<group>"; };
 		449480EA4D1CBECDCF572C90 /* NotificationRouteResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRouteResolver.swift; sourceTree = "<group>"; };
+		45ADF0247BF2AB3D0964DDAB /* BedtimePreparationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BedtimePreparationView.swift; sourceTree = "<group>"; };
 		492E61E3FC893BFD7C1B7D43 /* AppRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRoute.swift; sourceTree = "<group>"; };
 		4A87880E3EFE94AC1114FB08 /* WakeWindowPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWindowPolicy.swift; sourceTree = "<group>"; };
 		543EEF9D65A7682232F3C37F /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
 		549706B04BA9738FE43FED9A /* EnergyManagement.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = EnergyManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B9764A14AFED76BCEF577E7 /* WakeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeViewModel.swift; sourceTree = "<group>"; };
 		6010A895CF272E60C0DBCD68 /* SleepRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRecord.swift; sourceTree = "<group>"; };
 		62E8B5D048385ADC8867A21F /* WakeWindowPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWindowPolicyTests.swift; sourceTree = "<group>"; };
 		67E4E78162EFD4FA9ECC7FEF /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
 		68D3EE56AE5595E43D12D163 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
 		69DF5DB3F87EF6ECDC2E514E /* EnergyManagementUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyManagementUITests.swift; sourceTree = "<group>"; };
 		6A2695BB6D0172FFDD57F7FF /* SleepSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSchedule.swift; sourceTree = "<group>"; };
+		6F7B1811BC28DF3A34C38B15 /* BedtimeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BedtimeViewModelTests.swift; sourceTree = "<group>"; };
 		7856CF22E4AB640266A535CD /* NotificationPermissionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissionServiceTests.swift; sourceTree = "<group>"; };
 		892A7D2064E0D93E2484D7E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		930C06FF456D77828F3252E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9D290440FA9F6B188E2DB9D2 /* BedtimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BedtimeViewModel.swift; sourceTree = "<group>"; };
 		9EDC6C8EDDC31005CEB407D5 /* EnergyManagementUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = EnergyManagementUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA812480535EDEF17C3EE8B1 /* ReportSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportSummary.swift; sourceTree = "<group>"; };
 		AE727EDBB6AEB0614AB7B78E /* EnergyManagementTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = EnergyManagementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B15558E934B15FF61D3F4AD9 /* WakePromptsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakePromptsView.swift; sourceTree = "<group>"; };
 		BBF038605A183597D0532ED9 /* TypographyTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyTokens.swift; sourceTree = "<group>"; };
 		BD3030B86FA9A27465B338C3 /* SleepReportCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepReportCalculatorTests.swift; sourceTree = "<group>"; };
 		C4E5D652A4B232F4D5FD1B50 /* SleepReportCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepReportCalculator.swift; sourceTree = "<group>"; };
@@ -99,6 +113,8 @@
 		DD7C8B32E33C34F2F894C4D5 /* EnergyManagementApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyManagementApp.swift; sourceTree = "<group>"; };
 		E0528528B38B5209EA5B549D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E30673388C4E7D241E54E821 /* ScheduleSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSetupView.swift; sourceTree = "<group>"; };
+		E3FD5FEBA0A563F40AEF2B75 /* WakeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeViewModelTests.swift; sourceTree = "<group>"; };
+		F6E34A47F6F7AA51B9892D8D /* RitualFlowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RitualFlowUITests.swift; sourceTree = "<group>"; };
 		F8FF7A36D6E5392B70240F6D /* SpacingTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingTokens.swift; sourceTree = "<group>"; };
 		FF8DFF13D9D811ED3588C35C /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,8 +146,10 @@
 			isa = PBXGroup;
 			children = (
 				68D3EE56AE5595E43D12D163 /* .gitkeep */,
+				3A0949FD9515C5AAA668DF12 /* Bedtime */,
 				D96B16ED3AF5E12671790F3A /* Home */,
 				AC7A44D1D3AFBD154D0A53FA /* Setup */,
+				9D65208856C32E6CE3838F50 /* Wake */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -151,10 +169,19 @@
 			path = EnergyManagement;
 			sourceTree = "<group>";
 		};
+		3A0949FD9515C5AAA668DF12 /* Bedtime */ = {
+			isa = PBXGroup;
+			children = (
+				45ADF0247BF2AB3D0964DDAB /* BedtimePreparationView.swift */,
+			);
+			path = Bedtime;
+			sourceTree = "<group>";
+		};
 		631D0F6D1C4E462AB5EE36F1 /* EnergyManagementUITests */ = {
 			isa = PBXGroup;
 			children = (
 				69DF5DB3F87EF6ECDC2E514E /* EnergyManagementUITests.swift */,
+				F6E34A47F6F7AA51B9892D8D /* RitualFlowUITests.swift */,
 				DA4087B7E02126380BF427E3 /* SetupAndHomeUITests.swift */,
 			);
 			path = EnergyManagementUITests;
@@ -184,6 +211,15 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		9D65208856C32E6CE3838F50 /* Wake */ = {
+			isa = PBXGroup;
+			children = (
+				192C5C8C019DC26C676B65C9 /* WakeConfirmationView.swift */,
+				B15558E934B15FF61D3F4AD9 /* WakePromptsView.swift */,
+			);
+			path = Wake;
+			sourceTree = "<group>";
+		};
 		AC13F161469977C9B8EA61BA /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,8 +242,10 @@
 		BEE223853B1C0E3EAB152047 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				9D290440FA9F6B188E2DB9D2 /* BedtimeViewModel.swift */,
 				E0528528B38B5209EA5B549D /* HomeViewModel.swift */,
 				D8725622F35704CE27F1EADD /* SetupViewModel.swift */,
+				5B9764A14AFED76BCEF577E7 /* WakeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -223,6 +261,7 @@
 		D9EB8A1F897C3B5F5A217ED2 /* EnergyManagementTests */ = {
 			isa = PBXGroup;
 			children = (
+				6F7B1811BC28DF3A34C38B15 /* BedtimeViewModelTests.swift */,
 				18BB6F44B2C2CFEE4DF32041 /* EnergyManagementTests.swift */,
 				FF8DFF13D9D811ED3588C35C /* HomeViewModelTests.swift */,
 				7856CF22E4AB640266A535CD /* NotificationPermissionServiceTests.swift */,
@@ -232,6 +271,7 @@
 				1E5364FF92CF49173C2FEFCB /* SleepNotificationSchedulerTests.swift */,
 				BD3030B86FA9A27465B338C3 /* SleepReportCalculatorTests.swift */,
 				C8200E0E97463A1311A487D7 /* TestSupport.swift */,
+				E3FD5FEBA0A563F40AEF2B75 /* WakeViewModelTests.swift */,
 				62E8B5D048385ADC8867A21F /* WakeWindowPolicyTests.swift */,
 			);
 			path = EnergyManagementTests;
@@ -350,6 +390,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C73ECEA96141EC5E8ADE06BA /* BedtimeViewModelTests.swift in Sources */,
 				91653208E191813572BE5A31 /* EnergyManagementTests.swift in Sources */,
 				7F934DCAFCDEE8909AF143AB /* HomeViewModelTests.swift in Sources */,
 				11B30EB070428FD76906B6F0 /* NotificationPermissionServiceTests.swift in Sources */,
@@ -359,6 +400,7 @@
 				94EAD181DD595A2A7357CA96 /* SleepNotificationSchedulerTests.swift in Sources */,
 				688C817F088974EDBE9AD587 /* SleepReportCalculatorTests.swift in Sources */,
 				05A3582CF138DBB34362A1E5 /* TestSupport.swift in Sources */,
+				7D15D7E254B974F66AC8C96A /* WakeViewModelTests.swift in Sources */,
 				84AA7CC4879E5EF0052F3967 /* WakeWindowPolicyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,6 +410,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				61AA9E8D4C29C77EE1B4D383 /* AppRoute.swift in Sources */,
+				7C93DB44A5F5ED41B0E2EB7E /* BedtimePreparationView.swift in Sources */,
+				26AA04C4DA86283935C47673 /* BedtimeViewModel.swift in Sources */,
 				B86FEDC37B3789F09F08803F /* ColorTokens.swift in Sources */,
 				8E74CF891D2AA001B136F6C2 /* ContentView.swift in Sources */,
 				955E93E955113691294C12C0 /* EnergyManagementApp.swift in Sources */,
@@ -387,6 +431,9 @@
 				B1E5C2A03791CD6B86A37F6D /* SleepSchedule.swift in Sources */,
 				71643700B8711F3519539FD2 /* SpacingTokens.swift in Sources */,
 				36B7FDB1DACFA0B7DD8AD3A3 /* TypographyTokens.swift in Sources */,
+				8B6CD52B840BF8D09B5859C8 /* WakeConfirmationView.swift in Sources */,
+				9F6C0D851E25997F49A4E98D /* WakePromptsView.swift in Sources */,
+				B277587188394BB5D03F22A7 /* WakeViewModel.swift in Sources */,
 				4E6F5AF39604DC8A6B2BE51B /* WakeWindowPolicy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,6 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F427436458A2864FE158DE83 /* EnergyManagementUITests.swift in Sources */,
+				FE68F4A9B3F5D74EBB5D89B8 /* RitualFlowUITests.swift in Sources */,
 				5C930A6FB36BE813FB139243 /* SetupAndHomeUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

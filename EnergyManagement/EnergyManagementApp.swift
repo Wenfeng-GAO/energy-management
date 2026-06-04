@@ -10,6 +10,9 @@ struct EnergyManagementApp: App {
         if ProcessInfo.processInfo.arguments.contains("-resetInitialSetup") {
             UserDefaults.standard.set(false, forKey: "hasCompletedInitialSetup")
         }
+        if ProcessInfo.processInfo.arguments.contains("-completeInitialSetup") {
+            UserDefaults.standard.set(true, forKey: "hasCompletedInitialSetup")
+        }
     }
 
     var body: some Scene {
