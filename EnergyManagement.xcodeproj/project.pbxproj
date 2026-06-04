@@ -7,12 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05A3582CF138DBB34362A1E5 /* TestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8200E0E97463A1311A487D7 /* TestSupport.swift */; };
 		36B7FDB1DACFA0B7DD8AD3A3 /* TypographyTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF038605A183597D0532ED9 /* TypographyTokens.swift */; };
+		4E6F5AF39604DC8A6B2BE51B /* WakeWindowPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87880E3EFE94AC1114FB08 /* WakeWindowPolicy.swift */; };
+		5D3C979861F939037B87A907 /* SleepReportCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5D652A4B232F4D5FD1B50 /* SleepReportCalculator.swift */; };
+		6448BBA4F9FA940CB2516EC6 /* ReportSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA812480535EDEF17C3EE8B1 /* ReportSummary.swift */; };
+		688C817F088974EDBE9AD587 /* SleepReportCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3030B86FA9A27465B338C3 /* SleepReportCalculatorTests.swift */; };
 		71643700B8711F3519539FD2 /* SpacingTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FF7A36D6E5392B70240F6D /* SpacingTokens.swift */; };
+		84AA7CC4879E5EF0052F3967 /* WakeWindowPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B5D048385ADC8867A21F /* WakeWindowPolicyTests.swift */; };
 		8E74CF891D2AA001B136F6C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892A7D2064E0D93E2484D7E1 /* ContentView.swift */; };
 		91653208E191813572BE5A31 /* EnergyManagementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB6F44B2C2CFEE4DF32041 /* EnergyManagementTests.swift */; };
 		955E93E955113691294C12C0 /* EnergyManagementApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7C8B32E33C34F2F894C4D5 /* EnergyManagementApp.swift */; };
+		A1D55A2071699D5232E24B88 /* SleepDataStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B4D43CC0B6BF593854BA85 /* SleepDataStoreTests.swift */; };
+		B1E5C2A03791CD6B86A37F6D /* SleepSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2695BB6D0172FFDD57F7FF /* SleepSchedule.swift */; };
+		B73A51A50300661E8D0B404C /* SleepDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3471F6C402FB7B63FD628113 /* SleepDataStore.swift */; };
 		B86FEDC37B3789F09F08803F /* ColorTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC4B1C3EAB5AE9DF779F222 /* ColorTokens.swift */; };
+		D71A6A068ED447921F0A4C37 /* SleepRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010A895CF272E60C0DBCD68 /* SleepRecord.swift */; };
 		F427436458A2864FE158DE83 /* EnergyManagementUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DF5DB3F87EF6ECDC2E514E /* EnergyManagementUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,19 +44,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12B4D43CC0B6BF593854BA85 /* SleepDataStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDataStoreTests.swift; sourceTree = "<group>"; };
 		18BB6F44B2C2CFEE4DF32041 /* EnergyManagementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyManagementTests.swift; sourceTree = "<group>"; };
+		3471F6C402FB7B63FD628113 /* SleepDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDataStore.swift; sourceTree = "<group>"; };
 		3DC4B1C3EAB5AE9DF779F222 /* ColorTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTokens.swift; sourceTree = "<group>"; };
+		4A87880E3EFE94AC1114FB08 /* WakeWindowPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWindowPolicy.swift; sourceTree = "<group>"; };
 		543EEF9D65A7682232F3C37F /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
 		549706B04BA9738FE43FED9A /* EnergyManagement.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = EnergyManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6010A895CF272E60C0DBCD68 /* SleepRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRecord.swift; sourceTree = "<group>"; };
+		62E8B5D048385ADC8867A21F /* WakeWindowPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWindowPolicyTests.swift; sourceTree = "<group>"; };
 		67E4E78162EFD4FA9ECC7FEF /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
 		68D3EE56AE5595E43D12D163 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
 		69DF5DB3F87EF6ECDC2E514E /* EnergyManagementUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyManagementUITests.swift; sourceTree = "<group>"; };
+		6A2695BB6D0172FFDD57F7FF /* SleepSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSchedule.swift; sourceTree = "<group>"; };
 		892A7D2064E0D93E2484D7E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		930C06FF456D77828F3252E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9EDC6C8EDDC31005CEB407D5 /* EnergyManagementUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = EnergyManagementUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA812480535EDEF17C3EE8B1 /* ReportSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportSummary.swift; sourceTree = "<group>"; };
 		AE727EDBB6AEB0614AB7B78E /* EnergyManagementTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = EnergyManagementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBF038605A183597D0532ED9 /* TypographyTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyTokens.swift; sourceTree = "<group>"; };
+		BD3030B86FA9A27465B338C3 /* SleepReportCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepReportCalculatorTests.swift; sourceTree = "<group>"; };
+		C4E5D652A4B232F4D5FD1B50 /* SleepReportCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepReportCalculator.swift; sourceTree = "<group>"; };
 		C52D4993E1A8AFD86F476519 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		C8200E0E97463A1311A487D7 /* TestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupport.swift; sourceTree = "<group>"; };
 		DD7C8B32E33C34F2F894C4D5 /* EnergyManagementApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyManagementApp.swift; sourceTree = "<group>"; };
 		F8FF7A36D6E5392B70240F6D /* SpacingTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingTokens.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -56,6 +76,9 @@
 			isa = PBXGroup;
 			children = (
 				67E4E78162EFD4FA9ECC7FEF /* .gitkeep */,
+				AA812480535EDEF17C3EE8B1 /* ReportSummary.swift */,
+				6010A895CF272E60C0DBCD68 /* SleepRecord.swift */,
+				6A2695BB6D0172FFDD57F7FF /* SleepSchedule.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -113,6 +136,9 @@
 			isa = PBXGroup;
 			children = (
 				C52D4993E1A8AFD86F476519 /* .gitkeep */,
+				3471F6C402FB7B63FD628113 /* SleepDataStore.swift */,
+				C4E5D652A4B232F4D5FD1B50 /* SleepReportCalculator.swift */,
+				4A87880E3EFE94AC1114FB08 /* WakeWindowPolicy.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -131,6 +157,10 @@
 			isa = PBXGroup;
 			children = (
 				18BB6F44B2C2CFEE4DF32041 /* EnergyManagementTests.swift */,
+				12B4D43CC0B6BF593854BA85 /* SleepDataStoreTests.swift */,
+				BD3030B86FA9A27465B338C3 /* SleepReportCalculatorTests.swift */,
+				C8200E0E97463A1311A487D7 /* TestSupport.swift */,
+				62E8B5D048385ADC8867A21F /* WakeWindowPolicyTests.swift */,
 			);
 			path = EnergyManagementTests;
 			sourceTree = "<group>";
@@ -249,6 +279,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				91653208E191813572BE5A31 /* EnergyManagementTests.swift in Sources */,
+				A1D55A2071699D5232E24B88 /* SleepDataStoreTests.swift in Sources */,
+				688C817F088974EDBE9AD587 /* SleepReportCalculatorTests.swift in Sources */,
+				05A3582CF138DBB34362A1E5 /* TestSupport.swift in Sources */,
+				84AA7CC4879E5EF0052F3967 /* WakeWindowPolicyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,8 +293,14 @@
 				B86FEDC37B3789F09F08803F /* ColorTokens.swift in Sources */,
 				8E74CF891D2AA001B136F6C2 /* ContentView.swift in Sources */,
 				955E93E955113691294C12C0 /* EnergyManagementApp.swift in Sources */,
+				6448BBA4F9FA940CB2516EC6 /* ReportSummary.swift in Sources */,
+				B73A51A50300661E8D0B404C /* SleepDataStore.swift in Sources */,
+				D71A6A068ED447921F0A4C37 /* SleepRecord.swift in Sources */,
+				5D3C979861F939037B87A907 /* SleepReportCalculator.swift in Sources */,
+				B1E5C2A03791CD6B86A37F6D /* SleepSchedule.swift in Sources */,
 				71643700B8711F3519539FD2 /* SpacingTokens.swift in Sources */,
 				36B7FDB1DACFA0B7DD8AD3A3 /* TypographyTokens.swift in Sources */,
+				4E6F5AF39604DC8A6B2BE51B /* WakeWindowPolicy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
