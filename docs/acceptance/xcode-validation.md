@@ -1,6 +1,6 @@
 ---
 date: 2026-06-04
-status: blocked-by-xcode-install
+status: passed
 ---
 
 # Xcode Validation Notes
@@ -11,40 +11,31 @@ Install full Xcode and validate the Energy Management iOS app with the available
 
 ## Current State
 
-- Repository is synced to `origin/main` at `68a3672`.
+- Repository is synced to `origin/main` at `112702a`.
 - The app implementation exists under `EnergyManagement/`.
 - Peter reported the latest completed baseline as `38 unit tests + 14 UI tests`.
-- Current machine only has Command Line Tools selected:
-  - `xcode-select -p` -> `/Library/Developer/CommandLineTools`
-- Current machine does not have `/Applications/Xcode.app`.
-- `xcrun --find xcodebuild` and `xcrun --find simctl` fail because full Xcode is not installed.
+- Current validation host has full Xcode selected:
+  - `xcode-select -p` -> `/Applications/Xcode.app/Contents/Developer`
+  - `xcodebuild -version` -> `Xcode 16.4`, build `16F6`
+  - `xcrun --find xcodebuild` -> `/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild`
+  - `xcrun --find simctl` -> `/Applications/Xcode.app/Contents/Developer/usr/bin/simctl`
 - The requested `build-ios-apps` plugin is not currently available in this Codex session. The available iOS build capability is XcodeBuildMCP, which also requires full Xcode.
 
-## Installation Blocker
+## Automated Validation
 
-Full Xcode installation requires an Apple installation path that is not currently automatable here:
+Validated on 2026-06-04 with:
 
-- App Store install requires Apple ID / App Store authorization.
-- `softwareupdate --list` does not offer Xcode.
-- Homebrew is currently unable to fetch formula metadata from `formulae.brew.sh`, so `mas` / `xcodes` cannot be installed through Homebrew in this session.
-
-## Continue After Xcode Is Installed
-
-After `/Applications/Xcode.app` exists and has been opened once to finish first-run setup:
-
-```sh
-sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
-xcodebuild -version
-xcrun --find simctl
+```console
 xcodegen generate
 xcodebuild test -project EnergyManagement.xcodeproj -scheme EnergyManagement -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.6'
 ```
 
-Expected automated result:
+Result:
 
+- `xcodegen generate` exits 0.
 - `xcodebuild test` exits 0.
-- Existing unit tests and UI tests pass.
-- Baseline to compare against: `38 unit tests + 14 UI tests`.
+- `** TEST SUCCEEDED **`
+- `38 unit tests + 14 UI tests` pass with 0 failures.
 
 ## Manual QA Target
 
