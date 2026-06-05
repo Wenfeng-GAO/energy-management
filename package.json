@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "prototype:sleep-coach": "python3 -m http.server 5174 --directory docs/prototypes/sleep-coach-web-v1-1"
+  }
+}

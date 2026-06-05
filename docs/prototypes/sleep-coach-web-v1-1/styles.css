@@ -1,0 +1,871 @@
+:root {
+  --rice: #f3efe6;
+  --paper: #fffaf0;
+  --paper-deep: #ece4d5;
+  --ash: #a79f91;
+  --ash-light: #d9d0c0;
+  --ink: #29241e;
+  --muted: #72695d;
+  --sage: #87947d;
+  --sage-deep: #566451;
+  --mist: #dfe7e2;
+  --morning: #eef4f0;
+  --night: #252925;
+  --warm-shadow: rgba(70, 54, 34, 0.12);
+  --button: #2f342d;
+  --button-soft: #ece6d9;
+  --danger: #8d5145;
+  --radius: 14px;
+  --radius-small: 10px;
+  --max: 430px;
+  font-family: ui-serif, "Songti SC", "Noto Serif CJK SC", Georgia, serif;
+  color: var(--ink);
+  background: var(--rice);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    url("./assets/paper-texture.png"),
+    linear-gradient(90deg, rgba(41, 36, 30, 0.035) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(41, 36, 30, 0.028) 1px, transparent 1px),
+    var(--rice);
+  background-size: 256px 256px, 28px 28px, 28px 28px, auto;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgba(86, 100, 81, 0.32);
+  outline-offset: 3px;
+}
+
+.app-shell {
+  width: min(100%, var(--max));
+  min-height: 100vh;
+  margin: 0 auto;
+  background:
+    linear-gradient(rgba(255, 250, 240, 0.92), rgba(255, 250, 240, 0.92)),
+    url("./assets/paper-texture.png"),
+    var(--paper);
+  background-size: auto, 256px 256px, auto;
+  box-shadow: 0 18px 70px var(--warm-shadow);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.screen {
+  min-height: 100vh;
+  padding: 28px 22px 112px;
+  animation: enter 280ms ease both;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.screen.night {
+  color: #f7f0e3;
+  background:
+    radial-gradient(circle at 50% 100%, rgba(128, 115, 86, 0.16), transparent 42%),
+    linear-gradient(180deg, rgba(32, 36, 32, 0.98), rgba(45, 45, 37, 0.96)),
+    var(--night);
+}
+
+.screen.morning {
+  background: var(--morning);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 42px;
+  margin-bottom: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+.night .brand,
+.night .subtle,
+.night .body-text,
+.night .fine {
+  color: rgba(247, 240, 227, 0.74);
+}
+
+.mark {
+  width: 24px;
+  height: 24px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  position: relative;
+}
+
+.mark::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: currentColor;
+  position: absolute;
+  right: 4px;
+  top: 7px;
+}
+
+.ghost-button {
+  min-height: 40px;
+  padding: 0 12px;
+  color: var(--sage-deep);
+  background: transparent;
+  border-radius: 999px;
+}
+
+.night .ghost-button {
+  color: #efe8db;
+}
+
+.kicker {
+  margin: 0 0 12px;
+  color: var(--sage-deep);
+  font-size: 13px;
+}
+
+.night .kicker {
+  color: #cfd8c9;
+}
+
+h1 {
+  margin: 0;
+  font-size: 44px;
+  line-height: 1.03;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+h2 {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.12;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+h3 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+.body-text {
+  margin: 14px 0 0;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  font-size: 16px;
+  line-height: 1.72;
+  color: var(--muted);
+}
+
+.fine {
+  margin: 0;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.hero-space {
+  min-height: 52vh;
+  display: grid;
+  align-content: center;
+}
+
+.time-display {
+  margin: 28px 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.time-panel {
+  padding: 18px 16px;
+  background: rgba(255, 250, 240, 0.72);
+  border: 1px solid rgba(114, 105, 93, 0.16);
+  border-radius: var(--radius);
+}
+
+.time-label {
+  margin: 0 0 8px;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.time-value {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.settings-form {
+  margin-top: 28px;
+  display: grid;
+  gap: 16px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field label {
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.field-hint {
+  margin: -2px 0 2px;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  color: rgba(114, 105, 93, 0.78);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  min-height: 54px;
+  padding: 0 14px;
+  color: var(--ink);
+  background: rgba(255, 250, 240, 0.84);
+  border: 1px solid rgba(114, 105, 93, 0.18);
+  border-radius: var(--radius-small);
+}
+
+.reminder-row {
+  min-height: 76px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid rgba(114, 105, 93, 0.16);
+  border-radius: var(--radius);
+  background: rgba(255, 250, 240, 0.64);
+  cursor: pointer;
+}
+
+.reminder-title {
+  margin: 0 0 6px;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.reminder-copy {
+  margin: 0;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  color: rgba(114, 105, 93, 0.78);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.switch {
+  width: 48px;
+  height: 28px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: var(--ash-light);
+  position: relative;
+  transition: background 180ms ease;
+}
+
+.switch::after {
+  content: "";
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  border-radius: 999px;
+  background: var(--paper);
+  box-shadow: 0 2px 8px rgba(41, 36, 30, 0.16);
+  transition: transform 180ms ease;
+}
+
+.switch.on {
+  background: var(--sage);
+}
+
+.switch.on::after {
+  transform: translateX(20px);
+}
+
+.primary-action {
+  width: calc(100% - 44px);
+  min-height: 58px;
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  max-width: calc(var(--max) - 44px);
+  border-radius: 999px;
+  background: var(--button);
+  color: #fff8eb;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  font-size: 17px;
+  font-weight: 650;
+  box-shadow: 0 16px 34px rgba(47, 52, 45, 0.2);
+  z-index: 4;
+}
+
+.sleep-action {
+  min-height: 72px;
+  font-size: 20px;
+  letter-spacing: 0;
+  box-shadow: 0 18px 42px rgba(16, 21, 17, 0.34);
+}
+
+.bedtime-screen {
+  padding-bottom: 136px;
+}
+
+.bedtime-screen h2 {
+  margin-top: 42px;
+  font-size: 38px;
+}
+
+.bedtime-screen > .body-text {
+  max-width: 330px;
+  margin-top: 18px;
+  color: rgba(247, 240, 227, 0.72);
+}
+
+.sleep-science {
+  margin-top: 34px;
+  display: grid;
+  gap: 12px;
+}
+
+.sleep-tip {
+  min-height: 118px;
+  padding: 18px 18px 18px 16px;
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 12px;
+  align-items: start;
+  border: 1px solid rgba(247, 240, 227, 0.13);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 250, 240, 0.11), rgba(255, 250, 240, 0.045)),
+    rgba(27, 31, 28, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 250, 240, 0.08);
+}
+
+.sleep-tip span {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  color: rgba(247, 240, 227, 0.76);
+  background: rgba(247, 240, 227, 0.1);
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  font-size: 12px;
+}
+
+.sleep-tip h3 {
+  color: #fff8eb;
+  font-size: 18px;
+}
+
+.sleep-tip p {
+  margin: 8px 0 0;
+  color: rgba(247, 240, 227, 0.68);
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  font-size: 14px;
+  line-height: 1.62;
+}
+
+.bedtime-note {
+  margin: 22px 0 0;
+  color: rgba(247, 240, 227, 0.66);
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.secondary-action {
+  min-height: 48px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: var(--button-soft);
+  color: var(--ink);
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+}
+
+.action-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.state-band {
+  margin: 26px 0 0;
+  padding: 20px 0;
+  border-top: 1px solid rgba(114, 105, 93, 0.16);
+  border-bottom: 1px solid rgba(114, 105, 93, 0.16);
+}
+
+.state-title {
+  margin: 0;
+  font-size: 21px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.pill-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.pill {
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: rgba(135, 148, 125, 0.16);
+  color: var(--sage-deep);
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  font-size: 13px;
+}
+
+.notification {
+  margin: 20px 0 0;
+  padding: 14px 14px;
+  border-radius: var(--radius);
+  background: #f7f1e5;
+  border: 1px solid rgba(114, 105, 93, 0.18);
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  color: var(--ink);
+}
+
+.notification strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.night .notification {
+  background: rgba(255, 250, 240, 0.1);
+  border-color: rgba(247, 240, 227, 0.18);
+  color: #fff7e9;
+}
+
+.suggestions {
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.suggestions li {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-left: 2px solid currentColor;
+  background: rgba(255, 250, 240, 0.1);
+  color: inherit;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  border-radius: 0 var(--radius-small) var(--radius-small) 0;
+}
+
+.night .suggestions {
+  gap: 0;
+  border-top: 1px solid rgba(247, 240, 227, 0.16);
+}
+
+.night .suggestions li {
+  min-height: auto;
+  padding: 18px 0;
+  border-left: 0;
+  border-bottom: 1px solid rgba(247, 240, 227, 0.16);
+  border-radius: 0;
+  background: transparent;
+  color: rgba(255, 248, 235, 0.92);
+}
+
+.morning .suggestions li,
+.report-list li {
+  background: rgba(255, 250, 240, 0.68);
+  color: var(--ink);
+  border-color: var(--sage);
+}
+
+.report-hero {
+  margin-top: 28px;
+  padding: 24px 0;
+  border-top: 1px solid rgba(114, 105, 93, 0.16);
+  border-bottom: 1px solid rgba(114, 105, 93, 0.16);
+}
+
+.report-number {
+  margin: 0;
+  font-size: 58px;
+  line-height: 0.95;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.report-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.metric {
+  padding: 0 0 14px;
+  border-bottom: 1px solid rgba(114, 105, 93, 0.16);
+}
+
+.metric span {
+  display: block;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.metric strong {
+  display: block;
+  font-size: 22px;
+}
+
+.trend {
+  margin-top: 28px;
+}
+
+.sleep-complete {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 126px;
+}
+
+.sleep-summary {
+  margin-top: 28px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(247, 240, 227, 0.16);
+  border-bottom: 1px solid rgba(247, 240, 227, 0.16);
+}
+
+.sleep-summary span {
+  display: block;
+  margin-bottom: 8px;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  color: rgba(247, 240, 227, 0.7);
+  font-size: 13px;
+}
+
+.sleep-summary strong {
+  font-size: 42px;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.ritual-screen h2,
+.ritual-screen .body-text,
+.ritual-screen .sleep-summary,
+.ritual-screen .suggestions,
+.ritual-screen .action-row {
+  animation: ritualContentIn 720ms ease both;
+}
+
+.sleep-ritual {
+  width: 106px;
+  height: 106px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.sleep-orbit,
+.sleep-center {
+  position: absolute;
+  border-radius: 999px;
+}
+
+.sleep-orbit {
+  inset: 0;
+  border: 1px solid rgba(247, 240, 227, 0.34);
+  background: radial-gradient(circle, rgba(247, 240, 227, 0.08), transparent 58%);
+  animation: sleepBreath 2200ms ease-out both;
+}
+
+.sleep-center {
+  width: 28px;
+  height: 28px;
+  left: 50%;
+  top: 50%;
+  background: rgba(247, 240, 227, 0.88);
+  box-shadow: 0 0 32px rgba(247, 240, 227, 0.18);
+  transform: translate(-50%, -50%);
+  animation: sleepCenterSettle 2200ms ease-out both;
+}
+
+.wake-complete {
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 221, 145, 0.42), transparent 30%),
+    linear-gradient(180deg, #f4f2e8 0%, #e8f1eb 74%);
+}
+
+.wake-ritual {
+  width: 132px;
+  height: 132px;
+  margin: 36px auto 30px;
+  position: relative;
+}
+
+.wake-sun,
+.wake-ray {
+  position: absolute;
+  border-radius: 999px;
+}
+
+.wake-sun {
+  width: 62px;
+  height: 62px;
+  left: 50%;
+  top: 50%;
+  background:
+    radial-gradient(circle at 35% 35%, #fff8dc 0 18%, #efc86f 48%, #d9a24b 100%);
+  box-shadow: 0 18px 44px rgba(217, 162, 75, 0.24);
+  transform: translate(-50%, -50%);
+  animation: wakeSunRise 980ms cubic-bezier(0.18, 0.88, 0.24, 1.08) both;
+}
+
+.wake-ray {
+  inset: 18px;
+  border: 1px solid rgba(196, 155, 79, 0.26);
+  opacity: 0;
+  animation: wakeRaySpread 1400ms ease-out both;
+}
+
+.ray-two {
+  inset: 7px;
+  animation-delay: 140ms;
+}
+
+.ray-three {
+  inset: 0;
+  animation-delay: 260ms;
+}
+
+@keyframes sleepBreath {
+  0% {
+    opacity: 0;
+    transform: scale(1.18);
+  }
+  44% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.72;
+    transform: scale(0.82);
+  }
+}
+
+@keyframes sleepCenterSettle {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.45);
+  }
+  52% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.88;
+    transform: translate(-50%, -50%) scale(0.72);
+  }
+}
+
+@keyframes wakeSunRise {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 24%) scale(0.72);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes wakeRaySpread {
+  0% {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+  48% {
+    opacity: 0.72;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.18);
+  }
+}
+
+@keyframes ritualContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ritual-screen h2,
+  .ritual-screen .body-text,
+  .ritual-screen .sleep-summary,
+  .ritual-screen .suggestions,
+  .ritual-screen .action-row,
+  .sleep-orbit,
+  .sleep-center,
+  .wake-sun,
+  .wake-ray {
+    animation: none;
+  }
+}
+
+.bars {
+  display: flex;
+  align-items: end;
+  gap: 8px;
+  height: 96px;
+  margin-top: 16px;
+}
+
+.bar {
+  flex: 1;
+  min-width: 0;
+  background: var(--sage);
+  border-radius: 999px 999px 2px 2px;
+  opacity: 0.78;
+}
+
+.debug-panel {
+  margin-top: 28px;
+  padding: 14px;
+  border-radius: var(--radius);
+  background: rgba(41, 36, 30, 0.05);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  color: var(--muted);
+}
+
+.prototype-tools {
+  width: min(100%, var(--max));
+  position: fixed;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  padding: 8px 10px;
+  z-index: 5;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  background: rgba(243, 239, 230, 0.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(114, 105, 93, 0.12);
+}
+
+.prototype-tools + .screen {
+  padding-top: 72px;
+}
+
+.tool-button {
+  min-height: 32px;
+  white-space: nowrap;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(255, 250, 240, 0.78);
+  color: var(--muted);
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  font-size: 12px;
+}
+
+.tool-button.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+@media (min-width: 900px) {
+  body {
+    padding: 32px 0;
+  }
+
+  .app-shell {
+    min-height: calc(100vh - 64px);
+    border-radius: 28px;
+    overflow: hidden;
+  }
+
+  .screen {
+    min-height: calc(100vh - 64px);
+  }
+
+  .prototype-tools {
+    top: 32px;
+    border-radius: 28px 28px 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}
