@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -101,8 +101,8 @@
 		45ADF0247BF2AB3D0964DDAB /* BedtimePreparationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BedtimePreparationView.swift; sourceTree = "<group>"; };
 		492E61E3FC893BFD7C1B7D43 /* AppRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRoute.swift; sourceTree = "<group>"; };
 		4A87880E3EFE94AC1114FB08 /* WakeWindowPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWindowPolicy.swift; sourceTree = "<group>"; };
-		543EEF9D65A7682232F3C37F /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
-		549706B04BA9738FE43FED9A /* EnergyManagement.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = EnergyManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		543EEF9D65A7682232F3C37F /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		549706B04BA9738FE43FED9A /* EnergyManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnergyManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54F5EE14D653BECDEF17E185 /* ReportsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewModelTests.swift; sourceTree = "<group>"; };
 		566F1C3FCF8EC3EA3FF2C925 /* ReportsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewModel.swift; sourceTree = "<group>"; };
 		5B8E0135799EF461E9451F25 /* AppLaunchVisualSmokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunchVisualSmokeTests.swift; sourceTree = "<group>"; };
@@ -110,8 +110,8 @@
 		6010A895CF272E60C0DBCD68 /* SleepRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRecord.swift; sourceTree = "<group>"; };
 		60FC9E3DE28EA931A38F868A /* SevenDayTrendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SevenDayTrendView.swift; sourceTree = "<group>"; };
 		62E8B5D048385ADC8867A21F /* WakeWindowPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWindowPolicyTests.swift; sourceTree = "<group>"; };
-		67E4E78162EFD4FA9ECC7FEF /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
-		68D3EE56AE5595E43D12D163 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		67E4E78162EFD4FA9ECC7FEF /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		68D3EE56AE5595E43D12D163 /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		69DF5DB3F87EF6ECDC2E514E /* EnergyManagementUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyManagementUITests.swift; sourceTree = "<group>"; };
 		6A2695BB6D0172FFDD57F7FF /* SleepSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSchedule.swift; sourceTree = "<group>"; };
 		6F7B1811BC28DF3A34C38B15 /* BedtimeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BedtimeViewModelTests.swift; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 		BBF038605A183597D0532ED9 /* TypographyTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyTokens.swift; sourceTree = "<group>"; };
 		BD3030B86FA9A27465B338C3 /* SleepReportCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepReportCalculatorTests.swift; sourceTree = "<group>"; };
 		C4E5D652A4B232F4D5FD1B50 /* SleepReportCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepReportCalculator.swift; sourceTree = "<group>"; };
-		C52D4993E1A8AFD86F476519 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		C52D4993E1A8AFD86F476519 /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		C568498AAD7124330F1A555D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C6587D0AC86F3C4B59A180BD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C8200E0E97463A1311A487D7 /* TestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupport.swift; sourceTree = "<group>"; };
@@ -413,9 +413,6 @@
 					E362CE12E5384052D0817516 = {
 						DevelopmentTeam = "";
 					};
-					FE407E4540BAAC26B8F0C550 = {
-						DevelopmentTeam = "";
-					};
 				};
 			};
 			buildConfigurationList = 334E5947BC43339B6EA9BF7F /* Build configuration list for PBXProject "EnergyManagement" */;
@@ -428,7 +425,6 @@
 			);
 			mainGroup = 7D24238CCDC57DE214A0B941;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -549,6 +545,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = D8K2BG3SC8;
 				INFOPLIST_FILE = EnergyManagement/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "睡眠能量";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -670,6 +667,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = D8K2BG3SC8;
 				INFOPLIST_FILE = EnergyManagement/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "睡眠能量";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

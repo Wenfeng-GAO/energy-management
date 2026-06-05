@@ -19,7 +19,7 @@ final class AccessibilityUITests: XCTestCase {
         wakeApp.launchArguments = ["-completeInitialSetup", "-startWakeConfirmation"]
         wakeApp.launch()
 
-        let wakeButton = wakeApp.buttons["我已经起床"]
+        let wakeButton = wakeApp.buttons["我起床了"]
         XCTAssertTrue(wakeButton.waitForExistence(timeout: 5))
         XCTAssertTrue(wakeButton.isHittable)
         XCTAssertGreaterThanOrEqual(wakeButton.frame.height, 44)
@@ -28,7 +28,7 @@ final class AccessibilityUITests: XCTestCase {
         reportsApp.launchArguments = ["-completeInitialSetup", "-startReportsEmpty"]
         reportsApp.launch()
 
-        let reportsButton = reportsApp.buttons["回到今日节律"]
+        let reportsButton = reportsApp.buttons["回到首页"]
         XCTAssertTrue(reportsButton.waitForExistence(timeout: 5))
         XCTAssertTrue(reportsButton.isHittable)
         XCTAssertGreaterThanOrEqual(reportsButton.frame.height, 44)

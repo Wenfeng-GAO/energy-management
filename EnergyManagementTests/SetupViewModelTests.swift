@@ -11,8 +11,8 @@ final class SetupViewModelTests: XCTestCase {
         let didSave = await viewModel.saveSchedule()
 
         XCTAssertTrue(didSave)
-        XCTAssertEqual(try store.activeSchedule()?.bedtime, ClockTime(hour: 23, minute: 0))
-        XCTAssertEqual(try store.activeSchedule()?.wakeTime, ClockTime(hour: 7, minute: 0))
+        XCTAssertEqual(try store.activeSchedule()?.bedtime, ClockTime(hour: 23, minute: 30))
+        XCTAssertEqual(try store.activeSchedule()?.wakeTime, ClockTime(hour: 7, minute: 30))
         XCTAssertEqual(scheduler.snapshots.count, 1)
     }
 

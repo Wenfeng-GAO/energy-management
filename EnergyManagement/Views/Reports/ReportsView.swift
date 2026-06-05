@@ -26,7 +26,7 @@ struct ReportsView: View {
                     }
                 }
 
-                Button("回到今日节律", action: onDone)
+                Button("回到首页", action: onDone)
                     .buttonStyle(PrimaryActionButton())
                     .controlSize(.large)
                     .accessibilityIdentifier("reportsDoneButton")

@@ -10,8 +10,8 @@ final class BedtimeViewModelTests: XCTestCase {
             calendar: calendar
         )
 
-        XCTAssertEqual(viewModel.suggestions.count, 4)
-        XCTAssertTrue(viewModel.suggestions.contains("把手机放远一点，保留一盏柔和的灯。"))
+        XCTAssertEqual(viewModel.suggestions.count, 3)
+        XCTAssertTrue(viewModel.suggestions.contains("降低光线刺激|睡前减少屏幕和强光，让大脑更容易接收到夜晚信号。"))
         XCTAssertFalse(viewModel.hasConfirmedBedtime)
     }
 
@@ -33,7 +33,7 @@ final class BedtimeViewModelTests: XCTestCase {
         XCTAssertEqual(record.bedtimeState, .confirmed)
         XCTAssertEqual(
             viewModel.completionMessage,
-            "已记录睡前仪式。这里不是测量入睡时间，只是保留今晚的节律信号。"
+            "可以安心睡了。"
         )
     }
 
@@ -49,7 +49,7 @@ final class BedtimeViewModelTests: XCTestCase {
         ScheduleSnapshot(
             bedtime: ClockTime(hour: 23, minute: 0),
             wakeTime: ClockTime(hour: 7, minute: 0),
-            prepLeadMinutes: 30,
+            prepLeadMinutes: 45,
             timeZoneIdentifier: "Asia/Shanghai"
         )
     }

@@ -12,10 +12,14 @@ final class ReportsViewModelTests: XCTestCase {
         )
 
         XCTAssertEqual(viewModel.state, .accumulating)
-        XCTAssertEqual(viewModel.estimatedOpportunityText, "8 小时")
-        XCTAssertEqual(viewModel.wakeSignalText, "准点确认起床")
-        XCTAssertEqual(viewModel.bedtimeSignalText, "已记录睡前仪式")
-        XCTAssertEqual(viewModel.suggestionText, "节律信号很清楚。今晚继续保持轻量睡前准备。")
+        XCTAssertEqual(viewModel.sleepWindowText, "8 小时 6 分钟")
+        XCTAssertEqual(viewModel.sleepConfirmedText, "23:28")
+        XCTAssertEqual(viewModel.wakeConfirmedText, "07:34")
+        XCTAssertEqual(viewModel.targetBedtimeText, "23:30")
+        XCTAssertEqual(viewModel.targetWakeText, "07:30")
+        XCTAssertEqual(viewModel.wakeSignalText, "晚 4 分钟确认起床")
+        XCTAssertEqual(viewModel.bedtimeSignalText, "睡觉已确认")
+        XCTAssertEqual(viewModel.suggestionText, "今天有起床信号，但略晚。明早把第一个动作再降低一点难度。")
     }
 
     func testSevenDaysOfRecordsRenderReadyTrend() {
@@ -54,7 +58,7 @@ final class ReportsViewModelTests: XCTestCase {
         )
 
         XCTAssertEqual(viewModel.wakeSignalText, "起床未确认，按估计处理")
-        XCTAssertEqual(viewModel.suggestionText, "今天缺少起床确认。报告会保持估计口径，不把它当成实际睡眠质量。")
+        XCTAssertEqual(viewModel.suggestionText, "缺少睡觉或起床确认，今天的报告会保持克制，不伪造完整数据。")
     }
 
     func testEmptyRecordsRenderEmptyState() {
@@ -83,7 +87,7 @@ final class ReportsViewModelTests: XCTestCase {
             calculator: SleepReportCalculator(calendar: calendar)
         )
         XCTAssertEqual(reportsViewModel.wakeSignalText, "准点确认起床")
-        XCTAssertEqual(reportsViewModel.estimatedOpportunityText, "8 小时")
+        XCTAssertEqual(reportsViewModel.sleepWindowText, "待完整")
     }
 
     private var calendar: Calendar {
@@ -96,9 +100,9 @@ final class ReportsViewModelTests: XCTestCase {
 
     private var snapshot: ScheduleSnapshot {
         ScheduleSnapshot(
-            bedtime: ClockTime(hour: 23, minute: 0),
-            wakeTime: ClockTime(hour: 7, minute: 0),
-            prepLeadMinutes: 30,
+            bedtime: ClockTime(hour: 23, minute: 30),
+            wakeTime: ClockTime(hour: 7, minute: 30),
+            prepLeadMinutes: 45,
             timeZoneIdentifier: "Asia/Shanghai"
         )
     }
@@ -106,11 +110,12 @@ final class ReportsViewModelTests: XCTestCase {
     private func record(dayOffset: Int, wakeConfirmed: Bool) -> SleepRecord {
         let day = calendar.date(byAdding: .day, value: dayOffset, to: localDay) ?? localDay
         let wakeDate = snapshot.wakeTime.date(on: day, calendar: calendar)
+        let bedtimeDate = snapshot.bedtime.date(on: day, calendar: calendar)
         return SleepRecord(
             localDay: day,
             scheduleSnapshot: snapshot,
-            bedtimeConfirmedAt: snapshot.bedtime.date(on: day, calendar: calendar),
-            wakeConfirmedAt: wakeConfirmed ? wakeDate : nil,
+            bedtimeConfirmedAt: calendar.date(byAdding: .minute, value: -2, to: bedtimeDate),
+            wakeConfirmedAt: wakeConfirmed ? calendar.date(byAdding: .minute, value: 4, to: wakeDate) : nil,
             missedWakeMarkedAt: wakeConfirmed ? nil : calendar.date(byAdding: .minute, value: 61, to: wakeDate),
             calendar: calendar
         )

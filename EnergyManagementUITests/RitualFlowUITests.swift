@@ -11,12 +11,12 @@ final class RitualFlowUITests: XCTestCase {
         app.launch()
 
         XCTAssertTrue(app.staticTexts["睡前准备"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["把手机放远一点，保留一盏柔和的灯。"].exists)
+        XCTAssertTrue(app.staticTexts["降低光线刺激"].exists)
 
-        app.buttons["记录睡前仪式"].tap()
+        app.buttons["我睡觉了"].tap()
 
-        XCTAssertTrue(app.staticTexts["已记录睡前仪式。这里不是测量入睡时间，只是保留今晚的节律信号。"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.buttons["回到今日节律"].exists)
+        XCTAssertTrue(app.staticTexts["可以安心睡了"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["回到首页"].exists)
     }
 
     func testWakeConfirmationShowsWakePrompts() throws {
@@ -24,13 +24,13 @@ final class RitualFlowUITests: XCTestCase {
         app.launchArguments = ["-completeInitialSetup", "-startWakeConfirmation"]
         app.launch()
 
-        XCTAssertTrue(app.staticTexts["确认已经起床"].waitForExistence(timeout: 5))
-
-        app.buttons["我已经起床"].tap()
-
         XCTAssertTrue(app.staticTexts["早安"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["先喝几口水。"].exists)
-        XCTAssertTrue(app.staticTexts["把窗帘拉开，让房间变亮。"].exists)
+
+        app.buttons["我起床了"].tap()
+
+        XCTAssertTrue(app.staticTexts["开始清醒"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["喝几口水"].exists)
+        XCTAssertTrue(app.staticTexts["拉开窗帘，让房间变亮"].exists)
     }
 
     func testMissedWakeConfirmationShowsEstimatedStateLanguage() throws {
@@ -40,6 +40,6 @@ final class RitualFlowUITests: XCTestCase {
 
         XCTAssertTrue(app.staticTexts["错过起床确认"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["今天已经过了确认窗口。报告会以未确认或估计状态呈现。"].exists)
-        XCTAssertFalse(app.buttons["我已经起床"].exists)
+        XCTAssertFalse(app.buttons["我起床了"].exists)
     }
 }

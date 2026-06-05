@@ -10,7 +10,7 @@ final class EnergyManagementUITests: XCTestCase {
         app.launchArguments = ["-resetInitialSetup"]
         app.launch()
 
-        XCTAssertTrue(app.staticTexts["睡眠能量"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["建立一个安静、稳定的睡眠节律。"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.buttons["开始设置"].exists)
     }
 }

@@ -24,6 +24,7 @@ struct ContentView: View {
                 }
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(ColorTokens.warmWhite)
     }
 
@@ -31,25 +32,44 @@ struct ContentView: View {
     private var routedContent: some View {
         switch route {
         case .setup:
-            ScheduleSetupView {
+            ScheduleSetupView(editing: false) {
+                hasCompletedInitialSetup = true
+                route = .home(.normal)
+            }
+        case .setupEdit:
+            ScheduleSetupView(editing: true) {
                 hasCompletedInitialSetup = true
                 route = .home(.normal)
             }
         case .home:
             HomeView(
-                viewModel: .launchPlaceholder(),
+                viewModel: .live(context: homeContext),
+                onEditSchedule: { route = .setupEdit },
                 onStartBedtime: { route = .bedtimePreparation },
                 onStartWake: { route = .wakeConfirmation },
                 onShowReports: { route = .reports }
             )
         case .bedtimePreparation:
             BedtimePreparationView {
+                route = .sleepComplete
+            } onDone: {
+                route = .home(.normal)
+            }
+        case .sleepComplete:
+            SleepCompleteView {
                 route = .home(.normal)
             }
         case .wakeConfirmation:
             WakeConfirmationView {
+                route = .wakeComplete
+            } onDone: {
                 route = .home(.normal)
             }
+        case .wakeComplete:
+            WakeCompleteView(
+                onHome: { route = .home(.normal) },
+                onReports: { route = .reports }
+            )
         case .reports:
             ReportsView {
                 route = .home(.normal)
@@ -68,12 +88,25 @@ struct ContentView: View {
         if arguments.contains("-startMissedWake") {
             return .wakeConfirmation
         }
+        if arguments.contains("-startSleepComplete") {
+            return .sleepComplete
+        }
+        if arguments.contains("-startWakeComplete") {
+            return .wakeComplete
+        }
         if arguments.contains("-startReports")
             || arguments.contains("-startReportsEmpty")
             || arguments.contains("-startReportsMissed") {
             return .reports
         }
         return .home(.normal)
+    }
+
+    private var homeContext: HomeRouteContext {
+        if case let .home(context) = route {
+            return context
+        }
+        return .normal
     }
 }
 

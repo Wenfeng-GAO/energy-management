@@ -9,8 +9,11 @@ extension SleepNotificationScheduler: SleepReminderScheduling {}
 @MainActor
 final class SetupViewModel: ObservableObject {
     @Published var bedtimeHour: Int
+    @Published var bedtimeMinute: Int
     @Published var wakeHour: Int
+    @Published var wakeMinute: Int
     @Published var prepLeadMinutes: Int
+    @Published var notificationsEnabled: Bool
     @Published private(set) var notificationStatus: NotificationStatus
     @Published private(set) var errorMessage: String?
 
@@ -19,15 +22,21 @@ final class SetupViewModel: ObservableObject {
 
     init(
         bedtimeHour: Int = 23,
+        bedtimeMinute: Int = 30,
         wakeHour: Int = 7,
-        prepLeadMinutes: Int = 30,
+        wakeMinute: Int = 30,
+        prepLeadMinutes: Int = 45,
+        notificationsEnabled: Bool = true,
         notificationStatus: NotificationStatus = NotificationStatus(authorizationState: .notDetermined),
         dataStore: SleepDataStore? = nil,
         reminderScheduler: SleepReminderScheduling? = nil
     ) {
         self.bedtimeHour = bedtimeHour
+        self.bedtimeMinute = bedtimeMinute
         self.wakeHour = wakeHour
+        self.wakeMinute = wakeMinute
         self.prepLeadMinutes = prepLeadMinutes
+        self.notificationsEnabled = notificationsEnabled
         self.notificationStatus = notificationStatus
         self.dataStore = dataStore
         self.reminderScheduler = reminderScheduler
@@ -36,6 +45,20 @@ final class SetupViewModel: ObservableObject {
     static func live() -> SetupViewModel {
         let store = try? SleepDataStore()
         let scheduler = SleepNotificationScheduler(client: UserNotificationSchedulingClient())
+        if ProcessInfo.processInfo.arguments.contains("-resetInitialSetup") {
+            return SetupViewModel(dataStore: store, reminderScheduler: scheduler)
+        }
+        if let schedule = try? store?.activeSchedule() {
+            return SetupViewModel(
+                bedtimeHour: schedule.bedtime.hour,
+                bedtimeMinute: schedule.bedtime.minute,
+                wakeHour: schedule.wakeTime.hour,
+                wakeMinute: schedule.wakeTime.minute,
+                prepLeadMinutes: schedule.prepLeadMinutes,
+                dataStore: store,
+                reminderScheduler: scheduler
+            )
+        }
         return SetupViewModel(dataStore: store, reminderScheduler: scheduler)
     }
 
@@ -54,8 +77,8 @@ final class SetupViewModel: ObservableObject {
 
     func saveSchedule() async -> Bool {
         let snapshot = ScheduleSnapshot(
-            bedtime: ClockTime(hour: bedtimeHour, minute: 0),
-            wakeTime: ClockTime(hour: wakeHour, minute: 0),
+            bedtime: ClockTime(hour: bedtimeHour, minute: bedtimeMinute),
+            wakeTime: ClockTime(hour: wakeHour, minute: wakeMinute),
             prepLeadMinutes: prepLeadMinutes,
             timeZoneIdentifier: TimeZone.current.identifier
         )
@@ -68,7 +91,7 @@ final class SetupViewModel: ObservableObject {
 
         do {
             try dataStore?.saveSchedule(schedule)
-            if let reminderScheduler {
+            if notificationsEnabled, let reminderScheduler {
                 notificationStatus = await reminderScheduler.rescheduleDailyReminders(for: snapshot)
             }
             return true

@@ -11,11 +11,13 @@ final class SetupAndHomeUITests: XCTestCase {
         app.launch()
 
         app.buttons["开始设置"].tap()
-        XCTAssertTrue(app.staticTexts["设置作息"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["设置你的睡眠节律"].waitForExistence(timeout: 5))
 
-        app.buttons["保存作息"].tap()
+        app.buttons["保存并进入首页"].tap()
 
-        XCTAssertTrue(app.staticTexts["今日节律"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["睡前 23:00 · 起床 07:00 · 准备 30 分钟"].exists)
+        XCTAssertTrue(app.staticTexts["今日睡眠"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.staticTexts["homeBedtimeValue"].label, "23:30")
+        XCTAssertEqual(app.staticTexts["homeWakeValue"].label, "07:30")
+        XCTAssertTrue(app.buttons["修改作息"].exists)
     }
 }

@@ -41,9 +41,9 @@ final class WakeViewModel: ObservableObject {
         self.wakeWindowPolicy = wakeWindowPolicy ?? WakeWindowPolicy(calendar: calendar)
         self.now = now
         self.prompts = [
-            "先喝几口水。",
-            "把窗帘拉开，让房间变亮。",
-            "站起来活动一分钟，再决定今天的第一件事。"
+            "喝几口水",
+            "拉开窗帘，让房间变亮",
+            "站起来活动一分钟"
         ]
 
         let initialState = Self.state(
@@ -150,9 +150,9 @@ final class WakeViewModel: ObservableObject {
     private static func message(for state: WakeRitualState) -> String {
         switch state {
         case .confirmationAvailable:
-            return "轻点确认你已经起床。这个信号用于日程节律，不代表睡眠质量。"
+            return "现在确认起床，开始恢复清醒。"
         case .confirmed:
-            return "已记录起床信号。现在做一个很小的清醒动作。"
+            return "先做一件小事，让身体比手机先醒来。"
         case .missed:
             return "今天已经过了确认窗口。报告会以未确认或估计状态呈现。"
         case .tooEarly:

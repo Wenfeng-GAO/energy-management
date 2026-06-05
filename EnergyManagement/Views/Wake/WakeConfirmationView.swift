@@ -2,16 +2,30 @@ import SwiftUI
 
 struct WakeConfirmationView: View {
     @StateObject private var viewModel: WakeViewModel
+    let onWakeConfirmed: () -> Void
     let onDone: () -> Void
 
     @MainActor
-    init(viewModel: WakeViewModel? = nil, onDone: @escaping () -> Void = {}) {
+    init(viewModel: WakeViewModel? = nil, onWakeConfirmed: @escaping () -> Void = {}, onDone: @escaping () -> Void = {}) {
         _viewModel = StateObject(wrappedValue: viewModel ?? WakeViewModel.live())
+        self.onWakeConfirmed = onWakeConfirmed
         self.onDone = onDone
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: SpacingTokens.large) {
+            HStack {
+                HStack(spacing: 10) {
+                    BrandMark()
+                    Text("睡眠教练")
+                        .font(TypographyTokens.callout)
+                }
+                Spacer()
+                Button("返回", action: onDone)
+                    .font(TypographyTokens.callout)
+            }
+            .foregroundStyle(ColorTokens.secondaryText)
+
             Text(title)
                 .font(TypographyTokens.title)
                 .foregroundStyle(ColorTokens.ink)
@@ -22,10 +36,6 @@ struct WakeConfirmationView: View {
                 .fixedSize(horizontal: false, vertical: true)
                 .accessibilityIdentifier("wakeStatusMessage")
 
-            if viewModel.state == .confirmed {
-                WakePromptsView(prompts: viewModel.prompts)
-            }
-
             if let errorMessage = viewModel.errorMessage {
                 Text(errorMessage)
                     .font(TypographyTokens.caption)
@@ -35,7 +45,9 @@ struct WakeConfirmationView: View {
             Button(buttonTitle) {
                 switch viewModel.state {
                 case .confirmationAvailable:
-                    _ = viewModel.confirmWake()
+                    if viewModel.confirmWake() {
+                        onWakeConfirmed()
+                    }
                 case .confirmed, .missed, .tooEarly:
                     onDone()
                 }
@@ -46,16 +58,16 @@ struct WakeConfirmationView: View {
 
             Spacer()
         }
-        .appSurface()
+        .appSurface(background: ColorTokens.morning)
         .accessibilityIdentifier("wakeConfirmation")
     }
 
     private var title: String {
         switch viewModel.state {
         case .confirmationAvailable:
-            return "确认已经起床"
-        case .confirmed:
             return "早安"
+        case .confirmed:
+            return "开始清醒"
         case .missed:
             return "错过起床确认"
         case .tooEarly:
@@ -66,9 +78,9 @@ struct WakeConfirmationView: View {
     private var buttonTitle: String {
         switch viewModel.state {
         case .confirmationAvailable:
-            return "我已经起床"
+            return "我起床了"
         case .confirmed, .missed, .tooEarly:
-            return "回到今日节律"
+            return "回到首页"
         }
     }
 }

@@ -53,8 +53,8 @@ struct SevenDayTrendSummary: Equatable {
         averageEstimatedSleepOpportunityMinutes: Int?,
         wakeConfirmationRate: Double,
         consecutiveScheduleSignalDays: Int,
-        title: String = "七日日程信号",
-        estimateDisclaimer: String = "以下为基于日程与手动确认的估计，不代表实际睡眠时长。"
+        title: String = "七日节律",
+        estimateDisclaimer: String = "这是基于日程与手动确认的节律趋势，不代表医学睡眠时长。"
     ) {
         self.state = state
         self.dayCount = dayCount

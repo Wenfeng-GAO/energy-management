@@ -10,7 +10,11 @@ struct ReportsViewModel: Equatable {
     let state: ReportsViewState
     let dailySummary: DailyReportSummary?
     let trendSummary: SevenDayTrendSummary?
-    let estimatedOpportunityText: String
+    let sleepWindowText: String
+    let sleepConfirmedText: String
+    let wakeConfirmedText: String
+    let targetBedtimeText: String
+    let targetWakeText: String
     let wakeSignalText: String
     let bedtimeSignalText: String
     let suggestionText: String
@@ -27,7 +31,11 @@ struct ReportsViewModel: Equatable {
                 state: .empty,
                 dailySummary: nil,
                 trendSummary: nil,
-                estimatedOpportunityText: "",
+                sleepWindowText: "待完整",
+                sleepConfirmedText: "未确认",
+                wakeConfirmedText: "未确认",
+                targetBedtimeText: "--:--",
+                targetWakeText: "--:--",
                 wakeSignalText: "",
                 bedtimeSignalText: "",
                 suggestionText: "",
@@ -44,9 +52,13 @@ struct ReportsViewModel: Equatable {
             state: state,
             dailySummary: dailySummary,
             trendSummary: trendSummary,
-            estimatedOpportunityText: durationText(minutes: dailySummary.estimatedSleepOpportunityMinutes),
+            sleepWindowText: sleepWindowText(for: latestRecord),
+            sleepConfirmedText: timeText(latestRecord.bedtimeConfirmedAt, snapshot: latestRecord.scheduleSnapshot),
+            wakeConfirmedText: timeText(latestRecord.wakeConfirmedAt, snapshot: latestRecord.scheduleSnapshot),
+            targetBedtimeText: clockText(latestRecord.scheduleSnapshot.bedtime),
+            targetWakeText: clockText(latestRecord.scheduleSnapshot.wakeTime),
             wakeSignalText: wakeSignalText(for: dailySummary.wakeSignal),
-            bedtimeSignalText: dailySummary.bedtimeConfirmed ? "已记录睡前仪式" : "睡前仪式未确认",
+            bedtimeSignalText: dailySummary.bedtimeConfirmed ? "睡觉已确认" : "睡觉未确认",
             suggestionText: suggestion(for: dailySummary),
             emptyTitle: "",
             emptyDetail: ""
@@ -96,6 +108,31 @@ struct ReportsViewModel: Equatable {
         return "\(hours) 小时 \(remainder) 分钟"
     }
 
+    private static func sleepWindowText(for record: SleepRecord) -> String {
+        guard let bedtime = record.bedtimeConfirmedAt, let wake = record.wakeConfirmedAt else {
+            return "待完整"
+        }
+        var minutes = Int(wake.timeIntervalSince(bedtime) / 60)
+        if minutes <= 0 {
+            minutes += 24 * 60
+        }
+        return durationText(minutes: minutes)
+    }
+
+    private static func timeText(_ date: Date?, snapshot: ScheduleSnapshot) -> String {
+        guard let date else { return "未确认" }
+        var calendar = Calendar(identifier: .gregorian)
+        if let timeZone = TimeZone(identifier: snapshot.timeZoneIdentifier) {
+            calendar.timeZone = timeZone
+        }
+        let components = calendar.dateComponents([.hour, .minute], from: date)
+        return String(format: "%02d:%02d", components.hour ?? 0, components.minute ?? 0)
+    }
+
+    private static func clockText(_ time: ClockTime) -> String {
+        String(format: "%02d:%02d", time.hour, time.minute)
+    }
+
     private static func wakeSignalText(for signal: WakePunctualitySignal) -> String {
         switch signal {
         case .early(let minutesBeforeTarget):
@@ -112,11 +149,11 @@ struct ReportsViewModel: Equatable {
     private static func suggestion(for summary: DailyReportSummary) -> String {
         switch summary.wakeSignal {
         case .early, .onTime:
-            return "节律信号很清楚。今晚继续保持轻量睡前准备。"
+            return "最近七天保持接近 8 小时睡眠窗口。今晚继续按计划开始准备。"
         case .slightlyLate:
             return "今天有起床信号，但略晚。明早把第一个动作再降低一点难度。"
         case .missedOrEstimated, .accumulatingData:
-            return "今天缺少起床确认。报告会保持估计口径，不把它当成实际睡眠质量。"
+            return "缺少睡觉或起床确认，今天的报告会保持克制，不伪造完整数据。"
         }
     }
 
@@ -125,23 +162,26 @@ struct ReportsViewModel: Equatable {
         calendar.timeZone = TimeZone.current
         let today = calendar.startOfDay(for: Date())
         let snapshot = ScheduleSnapshot(
-            bedtime: ClockTime(hour: 23, minute: 0),
-            wakeTime: ClockTime(hour: 7, minute: 0),
-            prepLeadMinutes: 30,
+            bedtime: ClockTime(hour: 23, minute: 30),
+            wakeTime: ClockTime(hour: 7, minute: 30),
+            prepLeadMinutes: 45,
             timeZoneIdentifier: TimeZone.current.identifier
         )
 
         return (0..<dayCount).map { offset in
             let day = calendar.date(byAdding: .day, value: offset - dayCount + 1, to: today) ?? today
             let targetWake = snapshot.wakeTime.date(on: day, calendar: calendar)
-            let wakeConfirmedAt = missedLatestWake && offset == dayCount - 1 ? nil : targetWake
+            let bedtimeConfirmedAt = calendar.date(byAdding: .minute, value: -2, to: snapshot.bedtime.date(on: day, calendar: calendar))
+            let wakeConfirmedAt = missedLatestWake && offset == dayCount - 1
+                ? nil
+                : calendar.date(byAdding: .minute, value: 4, to: targetWake)
             let missedWakeMarkedAt = missedLatestWake && offset == dayCount - 1
                 ? calendar.date(byAdding: .minute, value: 61, to: targetWake)
                 : nil
             return SleepRecord(
                 localDay: day,
                 scheduleSnapshot: snapshot,
-                bedtimeConfirmedAt: snapshot.bedtime.date(on: day, calendar: calendar),
+                bedtimeConfirmedAt: bedtimeConfirmedAt,
                 wakeConfirmedAt: wakeConfirmedAt,
                 missedWakeMarkedAt: missedWakeMarkedAt,
                 calendar: calendar

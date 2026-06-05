@@ -10,11 +10,12 @@ final class ReportsUITests: XCTestCase {
         app.launchArguments = ["-completeInitialSetup", "-startReports"]
         app.launch()
 
-        XCTAssertTrue(app.staticTexts["今日报告"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["预估睡眠机会"].exists)
-        XCTAssertTrue(app.staticTexts["8 小时"].exists)
-        XCTAssertTrue(app.staticTexts["七日日程信号"].exists)
-        XCTAssertTrue(app.staticTexts["以下为基于日程与手动确认的估计，不代表实际睡眠时长。"].exists)
+        XCTAssertTrue(app.staticTexts["今日睡眠报告"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["8 小时 6 分钟"].exists)
+        XCTAssertTrue(app.staticTexts["昨晚睡觉"].exists)
+        XCTAssertTrue(app.staticTexts["今早起床"].exists)
+        XCTAssertTrue(app.staticTexts["七日节律"].exists)
+        XCTAssertTrue(app.staticTexts["这是基于日程与手动确认的节律趋势，不代表医学睡眠时长。"].exists)
     }
 
     func testMissedReportKeepsEstimatedLanguage() throws {
@@ -22,9 +23,9 @@ final class ReportsUITests: XCTestCase {
         app.launchArguments = ["-completeInitialSetup", "-startReportsMissed"]
         app.launch()
 
-        XCTAssertTrue(app.staticTexts["今日报告"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["起床未确认，按估计处理"].exists)
-        XCTAssertTrue(app.staticTexts["今天缺少起床确认。报告会保持估计口径，不把它当成实际睡眠质量。"].exists)
+        XCTAssertTrue(app.staticTexts["今日睡眠报告"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["待完整"].exists)
+        XCTAssertTrue(app.staticTexts["缺少睡觉或起床确认，今天的报告会保持克制，不伪造完整数据。"].exists)
     }
 
     func testEmptyReportsShowPolishedEmptyState() throws {

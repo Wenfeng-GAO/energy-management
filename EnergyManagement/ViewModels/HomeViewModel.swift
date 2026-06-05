@@ -8,7 +8,9 @@ enum HomeRitualState: Equatable {
 }
 
 struct HomeViewModel: Equatable {
-    let scheduleSummary: String
+    let bedtimeText: String
+    let wakeText: String
+    let prepStartText: String
     let nextActionTitle: String
     let nextActionDetail: String
     let notificationPrompt: String?
@@ -38,7 +40,9 @@ struct HomeViewModel: Equatable {
         )
 
         return HomeViewModel(
-            scheduleSummary: "睡前 \(formatted(scheduleSnapshot.bedtime)) · 起床 \(formatted(scheduleSnapshot.wakeTime)) · 准备 \(scheduleSnapshot.prepLeadMinutes) 分钟",
+            bedtimeText: formatted(scheduleSnapshot.bedtime),
+            wakeText: formatted(scheduleSnapshot.wakeTime),
+            prepStartText: prepStartText(scheduleSnapshot: scheduleSnapshot, localDay: localDay, calendar: calendar),
             nextActionTitle: title(for: state),
             nextActionDetail: detail(for: state),
             notificationPrompt: prompt(for: notificationStatus),
@@ -46,12 +50,48 @@ struct HomeViewModel: Equatable {
         )
     }
 
+    @MainActor
+    static func live(context: HomeRouteContext = .normal) -> HomeViewModel {
+        let store = try? SleepDataStore()
+        let snapshot = (try? store?.activeSchedule()?.snapshot) ?? ScheduleSnapshot(
+            bedtime: ClockTime(hour: 23, minute: 30),
+            wakeTime: ClockTime(hour: 7, minute: 30),
+            prepLeadMinutes: 45,
+            timeZoneIdentifier: TimeZone.current.identifier
+        )
+        let records = (try? store?.records()) ?? []
+        let record = records.sorted { $0.localDay < $1.localDay }.last
+        let notificationStatus = ProcessInfo.processInfo.arguments.contains("-homeNotificationDenied")
+            ? NotificationStatus(authorizationState: .denied)
+            : NotificationStatus(authorizationState: .authorized)
+        let now = Date()
+        let viewModel = make(
+            scheduleSnapshot: snapshot,
+            notificationStatus: notificationStatus,
+            now: now,
+            localDay: now,
+            record: record
+        )
+        if context == .missedWake {
+            return HomeViewModel(
+                bedtimeText: viewModel.bedtimeText,
+                wakeText: viewModel.wakeText,
+                prepStartText: viewModel.prepStartText,
+                nextActionTitle: title(for: .missedWakeConfirmation),
+                nextActionDetail: detail(for: .missedWakeConfirmation),
+                notificationPrompt: viewModel.notificationPrompt,
+                ritualState: .missedWakeConfirmation
+            )
+        }
+        return viewModel
+    }
+
     static func placeholder(notificationStatus: NotificationStatus = NotificationStatus(authorizationState: .notDetermined)) -> HomeViewModel {
         make(
             scheduleSnapshot: ScheduleSnapshot(
-                bedtime: ClockTime(hour: 23, minute: 0),
-                wakeTime: ClockTime(hour: 7, minute: 0),
-                prepLeadMinutes: 30,
+                bedtime: ClockTime(hour: 23, minute: 30),
+                wakeTime: ClockTime(hour: 7, minute: 30),
+                prepLeadMinutes: 45,
                 timeZoneIdentifier: TimeZone.current.identifier
             ),
             notificationStatus: notificationStatus,
@@ -107,6 +147,13 @@ struct HomeViewModel: Equatable {
         String(format: "%02d:%02d", time.hour, time.minute)
     }
 
+    private static func prepStartText(scheduleSnapshot: ScheduleSnapshot, localDay: Date, calendar: Calendar) -> String {
+        let bedtime = scheduleSnapshot.bedtime.date(on: localDay, calendar: calendar)
+        let prepStart = calendar.date(byAdding: .minute, value: -scheduleSnapshot.prepLeadMinutes, to: bedtime) ?? bedtime
+        let components = calendar.dateComponents([.hour, .minute], from: prepStart)
+        return String(format: "%02d:%02d", components.hour ?? 0, components.minute ?? 0)
+    }
+
     private static func prompt(for status: NotificationStatus) -> String? {
         switch status.authorizationState {
         case .denied:
@@ -123,11 +170,11 @@ struct HomeViewModel: Equatable {
     private static func title(for state: HomeRitualState) -> String {
         switch state {
         case .waiting:
-            return "下一步还没开始"
+            return "今晚会在睡前提醒你"
         case .bedtimePreparation:
-            return "进入睡前准备"
+            return "睡前准备时间到了"
         case .wakeConfirmation:
-            return "确认已经起床"
+            return "该起床了"
         case .missedWakeConfirmation:
             return "今天错过了起床确认"
         }
@@ -136,11 +183,11 @@ struct HomeViewModel: Equatable {
     private static func detail(for state: HomeRitualState) -> String {
         switch state {
         case .waiting:
-            return "保持轻松，到了准备时间再行动。"
+            return "睡前准备会按计划开始。"
         case .bedtimePreparation:
-            return "做几件低负担的事，让今晚安静收尾。"
+            return "现在开始远离屏幕，降低灯光。"
         case .wakeConfirmation:
-            return "轻点确认今天的日程信号。"
+            return "轻轻开始今天，不要先刷手机。"
         case .missedWakeConfirmation:
             return "报告会以未确认或估计状态呈现，不会假装你准时确认。"
         }

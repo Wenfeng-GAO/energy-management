@@ -54,8 +54,8 @@ final class SleepReportCalculatorTests: XCTestCase {
         XCTAssertEqual(trend.averageEstimatedSleepOpportunityMinutes, 8 * 60)
         XCTAssertEqual(trend.wakeConfirmationRate, 1, accuracy: 0.001)
         XCTAssertEqual(trend.consecutiveScheduleSignalDays, 7)
-        XCTAssertEqual(trend.title, "七日日程信号")
-        XCTAssertTrue(trend.estimateDisclaimer.contains("不代表实际睡眠时长"))
+        XCTAssertEqual(trend.title, "七日节律")
+        XCTAssertTrue(trend.estimateDisclaimer.contains("不代表医学睡眠时长"))
     }
 
     func testEmptyHistoryReturnsAccumulatingDataState() {

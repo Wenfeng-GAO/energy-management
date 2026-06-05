@@ -12,7 +12,7 @@ final class HomeViewModelTests: XCTestCase {
         )
 
         XCTAssertEqual(viewModel.ritualState, .waiting)
-        XCTAssertEqual(viewModel.nextActionTitle, "下一步还没开始")
+        XCTAssertEqual(viewModel.nextActionTitle, "今晚会在睡前提醒你")
     }
 
     func testHomeShowsWakeConfirmationDuringWakeWindow() {

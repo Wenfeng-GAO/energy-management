@@ -7,6 +7,8 @@ final class BedtimeViewModel: ObservableObject {
     @Published private(set) var errorMessage: String?
 
     let suggestions: [String]
+    let prepLeadMinutes: Int
+    let wakeText: String
 
     private let scheduleSnapshot: ScheduleSnapshot
     private let localDay: Date
@@ -28,11 +30,12 @@ final class BedtimeViewModel: ObservableObject {
         self.dataStore = dataStore
         self.now = now
         self.hasConfirmedBedtime = hasConfirmedBedtime
+        self.prepLeadMinutes = scheduleSnapshot.prepLeadMinutes
+        self.wakeText = String(format: "%02d:%02d", scheduleSnapshot.wakeTime.hour, scheduleSnapshot.wakeTime.minute)
         self.suggestions = [
-            "把手机放远一点，保留一盏柔和的灯。",
-            "写下明早第一件小事，让大脑停止排队。",
-            "做三轮慢呼吸，肩膀和下颌都松下来。",
-            "如果还不困，只做安静的纸质阅读。"
+            "降低光线刺激|睡前减少屏幕和强光，让大脑更容易接收到夜晚信号。",
+            "让卧室安静、偏凉、偏暗|稳定的睡眠环境，比临时补救更能帮助身体进入休息。",
+            "避开临睡前刺激|尽量远离咖啡因、酒精、大餐和激烈运动，把最后一段时间留给放松。"
         ]
     }
 
@@ -58,7 +61,7 @@ final class BedtimeViewModel: ObservableObject {
             record.confirmBedtime(at: confirmationDate)
             try dataStore?.saveRecord(record)
             hasConfirmedBedtime = true
-            completionMessage = "已记录睡前仪式。这里不是测量入睡时间，只是保留今晚的节律信号。"
+            completionMessage = "可以安心睡了。"
             return true
         } catch {
             errorMessage = "睡前仪式暂时无法记录，请稍后再试。"

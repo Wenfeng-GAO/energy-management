@@ -10,8 +10,8 @@ final class AppLaunchVisualSmokeTests: XCTestCase {
         app.launchArguments = ["-resetInitialSetup"]
         app.launch()
 
-        XCTAssertTrue(app.staticTexts["睡眠能量"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["先设定睡前、起床和准备时间。所有记录只保存在本机，报告展示的是日程信号和预估睡眠机会。"].exists)
+        XCTAssertTrue(app.staticTexts["建立一个安静、稳定的睡眠节律。"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["好的睡眠节律，会让身体更容易恢复，也让第二天醒来时多一点清醒和掌控感。"].exists)
         XCTAssertGreaterThanOrEqual(app.buttons["开始设置"].frame.height, 44)
     }
 }
