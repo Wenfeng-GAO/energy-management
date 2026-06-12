@@ -19,6 +19,7 @@ final class SetupViewModel: ObservableObject {
 
     private let dataStore: SleepDataStore?
     private let reminderScheduler: SleepReminderScheduling?
+    private let permissionService: NotificationPermissionServicing?
 
     init(
         bedtimeHour: Int = 23,
@@ -29,7 +30,8 @@ final class SetupViewModel: ObservableObject {
         notificationsEnabled: Bool = true,
         notificationStatus: NotificationStatus = NotificationStatus(authorizationState: .notDetermined),
         dataStore: SleepDataStore? = nil,
-        reminderScheduler: SleepReminderScheduling? = nil
+        reminderScheduler: SleepReminderScheduling? = nil,
+        permissionService: NotificationPermissionServicing? = nil
     ) {
         self.bedtimeHour = bedtimeHour
         self.bedtimeMinute = bedtimeMinute
@@ -40,13 +42,19 @@ final class SetupViewModel: ObservableObject {
         self.notificationStatus = notificationStatus
         self.dataStore = dataStore
         self.reminderScheduler = reminderScheduler
+        self.permissionService = permissionService
     }
 
     static func live() -> SetupViewModel {
         let store = try? SleepDataStore()
         let scheduler = SleepNotificationScheduler(client: UserNotificationSchedulingClient())
+        let permissionService = NotificationPermissionService()
         if ProcessInfo.processInfo.arguments.contains("-resetInitialSetup") {
-            return SetupViewModel(dataStore: store, reminderScheduler: scheduler)
+            return SetupViewModel(
+                dataStore: store,
+                reminderScheduler: scheduler,
+                permissionService: permissionService
+            )
         }
         if let schedule = try? store?.activeSchedule() {
             return SetupViewModel(
@@ -56,10 +64,15 @@ final class SetupViewModel: ObservableObject {
                 wakeMinute: schedule.wakeTime.minute,
                 prepLeadMinutes: schedule.prepLeadMinutes,
                 dataStore: store,
-                reminderScheduler: scheduler
+                reminderScheduler: scheduler,
+                permissionService: permissionService
             )
         }
-        return SetupViewModel(dataStore: store, reminderScheduler: scheduler)
+        return SetupViewModel(
+            dataStore: store,
+            reminderScheduler: scheduler,
+            permissionService: permissionService
+        )
     }
 
     var notificationPrompt: String? {
@@ -92,12 +105,28 @@ final class SetupViewModel: ObservableObject {
         do {
             try dataStore?.saveSchedule(schedule)
             if notificationsEnabled, let reminderScheduler {
-                notificationStatus = await reminderScheduler.rescheduleDailyReminders(for: snapshot)
+                let status = await notificationAuthorizationStatus()
+                notificationStatus = status
+                if status.canScheduleReminders {
+                    notificationStatus = await reminderScheduler.rescheduleDailyReminders(for: snapshot)
+                }
             }
             return true
         } catch {
             errorMessage = "作息暂时无法保存，请稍后再试。"
             return false
         }
+    }
+
+    private func notificationAuthorizationStatus() async -> NotificationStatus {
+        guard let permissionService else {
+            return notificationStatus
+        }
+
+        let currentStatus = await permissionService.currentStatus()
+        if currentStatus.authorizationState == .notDetermined {
+            return await permissionService.requestPermission()
+        }
+        return currentStatus
     }
 }

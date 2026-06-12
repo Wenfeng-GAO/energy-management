@@ -14,4 +14,12 @@ final class NotificationPermissionServiceTests: XCTestCase {
         XCTAssertTrue(NotificationStatus(authorizationState: .provisional).canScheduleReminders)
         XCTAssertTrue(NotificationStatus(authorizationState: .ephemeral).canScheduleReminders)
     }
+
+    func testForegroundLocalNotificationsArePresentedToUser() {
+        let options = AppNotificationDelegate.foregroundPresentationOptions
+
+        XCTAssertTrue(options.contains(.banner))
+        XCTAssertTrue(options.contains(.list))
+        XCTAssertTrue(options.contains(.sound))
+    }
 }

@@ -24,6 +24,7 @@ final class HappyPathIntegrationTests: XCTestCase {
             wakeMinute: 0,
             prepLeadMinutes: 30,
             notificationsEnabled: true,
+            notificationStatus: NotificationStatus(authorizationState: .authorized),
             dataStore: store,
             reminderScheduler: scheduler
         )
@@ -148,6 +149,7 @@ final class HappyPathIntegrationTests: XCTestCase {
             wakeMinute: 0,
             prepLeadMinutes: 30,
             notificationsEnabled: true,
+            notificationStatus: NotificationStatus(authorizationState: .authorized),
             dataStore: store,
             reminderScheduler: scheduler
         )
