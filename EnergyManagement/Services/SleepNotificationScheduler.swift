@@ -60,6 +60,7 @@ struct SleepNotificationScheduler {
     static let bedtimePreparationIdentifier = "sleep.bedtimePreparation.daily"
     static let wakeIdentifier = "sleep.wake.daily"
     static let userInfoKindKey = "sleepNotificationKind"
+    static let wakeLeadMinutes = 5
 
     private let client: SleepNotificationSchedulingClient
 
@@ -111,11 +112,14 @@ struct SleepNotificationScheduler {
     }
 
     private func wakeRequest(for snapshot: ScheduleSnapshot) -> SleepNotificationRequest {
-        SleepNotificationRequest(
+        let reminderMinutes = positiveMinutesAfterMidnight(
+            snapshot.wakeTime.minutesAfterMidnight - Self.wakeLeadMinutes
+        )
+        return SleepNotificationRequest(
             identifier: Self.wakeIdentifier,
             kind: .wake,
-            hour: snapshot.wakeTime.hour,
-            minute: snapshot.wakeTime.minute,
+            hour: reminderMinutes / 60,
+            minute: reminderMinutes % 60,
             title: "确认起床",
             body: "轻点确认今天的起床信号，记录你的日程节律。",
             repeatsDaily: true

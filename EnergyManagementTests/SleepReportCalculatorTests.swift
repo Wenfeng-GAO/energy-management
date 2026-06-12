@@ -103,4 +103,115 @@ final class SleepReportCalculatorTests: XCTestCase {
 
         XCTAssertEqual(targetInChangedDeviceZone, TestCalendar.date("2026-06-04T07:00:00+08:00"))
     }
+
+    // MARK: - Category H: Report Calculator Boundaries
+
+    func testSevenDayTrendWithMoreThanSevenRecordsTakesLastSeven() {
+        let calendar = TestCalendar.make()
+        let records = (0..<10).map { offset in
+            let localDay = calendar.date(
+                byAdding: .day,
+                value: offset,
+                to: TestCalendar.date("2026-06-01T00:00:00+08:00")
+            )!
+            let wakeConfirmedAt: Date? = offset < 3 ? nil : calendar.date(bySettingHour: 7, minute: 5, second: 0, of: localDay)!
+            return TestRecords.record(
+                localDay: localDay,
+                wakeConfirmedAt: wakeConfirmedAt,
+                calendar: calendar
+            )
+        }
+
+        let trend = SleepReportCalculator(calendar: calendar).sevenDayTrend(for: records)
+
+        XCTAssertEqual(trend.state, .ready)
+        XCTAssertEqual(trend.dayCount, 7)
+        XCTAssertEqual(trend.wakeConfirmationRate, 1.0, accuracy: 0.001)
+        XCTAssertEqual(trend.consecutiveScheduleSignalDays, 7)
+    }
+
+    func testSevenDayTrendAllRecordsMissedWake() {
+        let calendar = TestCalendar.make()
+        let records = (0..<7).map { offset in
+            let localDay = calendar.date(
+                byAdding: .day,
+                value: offset,
+                to: TestCalendar.date("2026-06-01T00:00:00+08:00")
+            )!
+            return TestRecords.record(
+                localDay: localDay,
+                wakeConfirmedAt: nil,
+                calendar: calendar
+            )
+        }
+
+        let trend = SleepReportCalculator(calendar: calendar).sevenDayTrend(for: records)
+
+        XCTAssertEqual(trend.state, .ready)
+        XCTAssertEqual(trend.dayCount, 7)
+        XCTAssertEqual(trend.wakeConfirmationRate, 0.0, accuracy: 0.001)
+        XCTAssertEqual(trend.consecutiveScheduleSignalDays, 0)
+    }
+
+    func testConsecutiveStreakBreaksInMiddle() {
+        let calendar = TestCalendar.make()
+        let records = (0..<7).map { offset in
+            let localDay = calendar.date(
+                byAdding: .day,
+                value: offset,
+                to: TestCalendar.date("2026-06-01T00:00:00+08:00")
+            )!
+            let wakeConfirmedAt: Date? = offset == 4 ? nil : calendar.date(bySettingHour: 7, minute: 5, second: 0, of: localDay)!
+            return TestRecords.record(
+                localDay: localDay,
+                wakeConfirmedAt: wakeConfirmedAt,
+                calendar: calendar
+            )
+        }
+
+        let trend = SleepReportCalculator(calendar: calendar).sevenDayTrend(for: records)
+
+        XCTAssertEqual(trend.state, .ready)
+        XCTAssertEqual(trend.consecutiveScheduleSignalDays, 2)
+        XCTAssertEqual(trend.wakeConfirmationRate, 6.0 / 7.0, accuracy: 0.001)
+    }
+
+    func testSevenDayTrendWithFewerThanSevenRecords() {
+        let calendar = TestCalendar.make()
+        let records = (0..<3).map { offset in
+            let localDay = calendar.date(
+                byAdding: .day,
+                value: offset,
+                to: TestCalendar.date("2026-06-01T00:00:00+08:00")
+            )!
+            return TestRecords.record(
+                localDay: localDay,
+                wakeConfirmedAt: calendar.date(bySettingHour: 7, minute: 0, second: 0, of: localDay)!,
+                calendar: calendar
+            )
+        }
+
+        let trend = SleepReportCalculator(calendar: calendar).sevenDayTrend(for: records)
+
+        XCTAssertEqual(trend.state, .accumulatingData)
+        XCTAssertEqual(trend.dayCount, 3)
+        XCTAssertEqual(trend.wakeConfirmationRate, 1.0, accuracy: 0.001)
+        XCTAssertEqual(trend.consecutiveScheduleSignalDays, 3)
+        XCTAssertEqual(trend.averageEstimatedSleepOpportunityMinutes, 480)
+    }
+
+    func testDailySummaryWithWakeConfirmedOutsideWindowReportsMissed() {
+        let calendar = TestCalendar.make()
+        let localDay = TestCalendar.date("2026-06-04T00:00:00+08:00")
+        let targetWakePlus70 = TestCalendar.date("2026-06-04T08:10:00+08:00")
+        let record = TestRecords.record(
+            localDay: localDay,
+            wakeConfirmedAt: targetWakePlus70,
+            calendar: calendar
+        )
+
+        let summary = SleepReportCalculator(calendar: calendar).dailySummary(for: record)
+
+        XCTAssertEqual(summary.wakeSignal, .missedOrEstimated)
+    }
 }

@@ -4,6 +4,8 @@ struct ContentView: View {
     @AppStorage("hasCompletedInitialSetup") private var hasCompletedInitialSetup = false
     @State private var isShowingScheduleSetup = false
     @State private var route: AppRoute
+    @State private var bedtimeViewModel: BedtimeViewModel?
+    @State private var wakeViewModel: WakeViewModel?
 
     init(initialRoute: AppRoute? = nil) {
         _route = State(initialValue: initialRoute ?? Self.launchRoute())
@@ -50,25 +52,48 @@ struct ContentView: View {
                 onShowReports: { route = .reports }
             )
         case .bedtimePreparation:
-            BedtimePreparationView {
+            BedtimePreparationView(viewModel: getOrCreateBedtimeViewModel()) {
                 route = .sleepComplete
             } onDone: {
+                bedtimeViewModel = nil
                 route = .home(.normal)
             }
         case .sleepComplete:
-            SleepCompleteView {
-                route = .home(.normal)
-            }
+            SleepCompleteView(
+                canUndo: bedtimeViewModel?.canUndoBedtime ?? false,
+                onUndo: {
+                    if bedtimeViewModel?.undoBedtime() == true {
+                        route = .bedtimePreparation
+                    }
+                },
+                onDone: {
+                    bedtimeViewModel = nil
+                    route = .home(.normal)
+                }
+            )
         case .wakeConfirmation:
-            WakeConfirmationView {
+            WakeConfirmationView(viewModel: getOrCreateWakeViewModel()) {
                 route = .wakeComplete
             } onDone: {
+                wakeViewModel = nil
                 route = .home(.normal)
             }
         case .wakeComplete:
             WakeCompleteView(
-                onHome: { route = .home(.normal) },
-                onReports: { route = .reports }
+                canUndo: wakeViewModel?.canUndoWake ?? false,
+                onUndo: {
+                    if wakeViewModel?.undoWake() == true {
+                        route = .wakeConfirmation
+                    }
+                },
+                onHome: {
+                    wakeViewModel = nil
+                    route = .home(.normal)
+                },
+                onReports: {
+                    wakeViewModel = nil
+                    route = .reports
+                }
             )
         case .reports:
             ReportsView {
@@ -107,6 +132,22 @@ struct ContentView: View {
             return context
         }
         return .normal
+    }
+
+    @MainActor
+    private func getOrCreateBedtimeViewModel() -> BedtimeViewModel {
+        if let existing = bedtimeViewModel { return existing }
+        let vm = BedtimeViewModel.live()
+        bedtimeViewModel = vm
+        return vm
+    }
+
+    @MainActor
+    private func getOrCreateWakeViewModel() -> WakeViewModel {
+        if let existing = wakeViewModel { return existing }
+        let vm = WakeViewModel.live()
+        wakeViewModel = vm
+        return vm
     }
 }
 

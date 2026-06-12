@@ -1,13 +1,13 @@
 import SwiftUI
 
 struct WakeConfirmationView: View {
-    @StateObject private var viewModel: WakeViewModel
+    @ObservedObject private var viewModel: WakeViewModel
     let onWakeConfirmed: () -> Void
     let onDone: () -> Void
 
     @MainActor
     init(viewModel: WakeViewModel? = nil, onWakeConfirmed: @escaping () -> Void = {}, onDone: @escaping () -> Void = {}) {
-        _viewModel = StateObject(wrappedValue: viewModel ?? WakeViewModel.live())
+        self.viewModel = viewModel ?? WakeViewModel.live()
         self.onWakeConfirmed = onWakeConfirmed
         self.onDone = onDone
     }

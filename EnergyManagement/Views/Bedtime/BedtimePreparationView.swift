@@ -1,13 +1,13 @@
 import SwiftUI
 
 struct BedtimePreparationView: View {
-    @StateObject private var viewModel: BedtimeViewModel
+    @ObservedObject private var viewModel: BedtimeViewModel
     let onSleepConfirmed: () -> Void
     let onDone: () -> Void
 
     @MainActor
     init(viewModel: BedtimeViewModel? = nil, onSleepConfirmed: @escaping () -> Void = {}, onDone: @escaping () -> Void = {}) {
-        _viewModel = StateObject(wrappedValue: viewModel ?? BedtimeViewModel.live())
+        self.viewModel = viewModel ?? BedtimeViewModel.live()
         self.onSleepConfirmed = onSleepConfirmed
         self.onDone = onDone
     }
@@ -50,6 +50,16 @@ struct BedtimePreparationView: View {
                     .foregroundStyle(.red)
             }
 
+            if let warning = viewModel.windowWarning {
+                Text(warning)
+                    .font(TypographyTokens.caption)
+                    .foregroundStyle(ColorTokens.warmWhite.opacity(0.8))
+                    .padding(SpacingTokens.medium)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(ColorTokens.warmWhite.opacity(0.1))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+            }
+
             Text("准备好上床时，直接确认睡觉。")
                 .font(TypographyTokens.caption)
                 .foregroundStyle(ColorTokens.warmWhite.opacity(0.66))
@@ -66,6 +76,7 @@ struct BedtimePreparationView: View {
             Spacer(minLength: 0)
         }
         .appSurface(background: ColorTokens.night)
+        .onAppear { viewModel.checkBedtimeWindow() }
     }
 
     private func sleepTip(index: Int, rawText: String) -> some View {
@@ -109,10 +120,14 @@ struct SleepCompleteView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var settled = false
     let wakeText: String
+    let canUndo: Bool
+    let onUndo: (() -> Void)?
     let onDone: () -> Void
 
-    init(wakeText: String? = nil, onDone: @escaping () -> Void) {
+    init(wakeText: String? = nil, canUndo: Bool = false, onUndo: (() -> Void)? = nil, onDone: @escaping () -> Void) {
         self.wakeText = wakeText ?? Self.liveWakeText()
+        self.canUndo = canUndo
+        self.onUndo = onUndo
         self.onDone = onDone
     }
 
@@ -155,6 +170,12 @@ struct SleepCompleteView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .overlay(alignment: .top) { Divider().background(ColorTokens.warmWhite.opacity(0.16)) }
             .overlay(alignment: .bottom) { Divider().background(ColorTokens.warmWhite.opacity(0.16)) }
+
+            if canUndo, let onUndo {
+                Button("撤回") { onUndo() }
+                    .buttonStyle(SecondaryActionButton())
+                    .accessibilityIdentifier("undoBedtimeButton")
+            }
 
             Button("回到首页", action: onDone)
                 .buttonStyle(PrimaryActionButton())

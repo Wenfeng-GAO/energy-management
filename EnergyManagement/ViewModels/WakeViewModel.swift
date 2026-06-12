@@ -12,8 +12,11 @@ final class WakeViewModel: ObservableObject {
     @Published private(set) var state: WakeRitualState
     @Published private(set) var statusMessage: String
     @Published private(set) var errorMessage: String?
+    @Published private(set) var canUndoWake = false
 
     let prompts: [String]
+
+    static let undoWindowSeconds: TimeInterval = 5 * 60
 
     private let scheduleSnapshot: ScheduleSnapshot
     private let localDay: Date
@@ -21,6 +24,8 @@ final class WakeViewModel: ObservableObject {
     private let dataStore: SleepDataStore?
     private let wakeWindowPolicy: WakeWindowPolicy
     private let now: () -> Date
+    private var wakeConfirmedAtDate: Date?
+    private var undoTask: Task<Void, Never>?
 
     init(
         scheduleSnapshot: ScheduleSnapshot,
@@ -94,6 +99,34 @@ final class WakeViewModel: ObservableObject {
         }
     }
 
+    func undoWake() -> Bool {
+        guard canUndoWake else { return false }
+        guard let confirmedAt = wakeConfirmedAtDate else { return false }
+
+        let elapsed = now().timeIntervalSince(confirmedAt)
+        guard elapsed <= Self.undoWindowSeconds else {
+            canUndoWake = false
+            return false
+        }
+
+        do {
+            guard let record = try dataStore?.record(for: localDay, calendar: calendar) else {
+                return false
+            }
+            record.revokeWake()
+            try dataStore?.saveRecord(record)
+            state = .confirmationAvailable
+            statusMessage = Self.message(for: .confirmationAvailable)
+            canUndoWake = false
+            wakeConfirmedAtDate = nil
+            undoTask?.cancel()
+            return true
+        } catch {
+            errorMessage = "撤回操作暂时无法完成，请稍后再试。"
+            return false
+        }
+    }
+
     private func saveAcceptedWake(at confirmationDate: Date) -> Bool {
         do {
             let record = try existingOrNewRecord()
@@ -101,6 +134,9 @@ final class WakeViewModel: ObservableObject {
             try dataStore?.saveRecord(record)
             state = .confirmed
             statusMessage = Self.message(for: .confirmed)
+            wakeConfirmedAtDate = confirmationDate
+            canUndoWake = true
+            startUndoCountdown()
             return true
         } catch {
             errorMessage = "起床确认暂时无法记录，请稍后再试。"
@@ -119,6 +155,15 @@ final class WakeViewModel: ObservableObject {
         } catch {
             errorMessage = "未确认状态暂时无法记录，请稍后再试。"
             return false
+        }
+    }
+
+    private func startUndoCountdown() {
+        undoTask?.cancel()
+        undoTask = Task { [weak self] in
+            try? await Task.sleep(for: .seconds(Self.undoWindowSeconds))
+            guard !Task.isCancelled else { return }
+            self?.canUndoWake = false
         }
     }
 

@@ -37,6 +37,115 @@ final class BedtimeViewModelTests: XCTestCase {
         )
     }
 
+    // MARK: - Category B: State Flow Completeness
+
+    func testDoubleTapConfirmBedtimeIsIdempotent() throws {
+        let store = try SleepDataStore(inMemory: true)
+        let firstDate = TestCalendar.date("2026-06-04T14:50:00Z")
+        let secondDate = TestCalendar.date("2026-06-04T14:51:00Z")
+        var currentDate = firstDate
+        let viewModel = BedtimeViewModel(
+            scheduleSnapshot: snapshot,
+            localDay: localDay,
+            calendar: calendar,
+            dataStore: store,
+            now: { currentDate }
+        )
+
+        XCTAssertTrue(viewModel.confirmBedtime())
+        XCTAssertTrue(viewModel.hasConfirmedBedtime)
+
+        currentDate = secondDate
+        XCTAssertTrue(viewModel.confirmBedtime())
+        XCTAssertTrue(viewModel.hasConfirmedBedtime)
+
+        let record = try XCTUnwrap(store.record(for: localDay, calendar: calendar))
+        XCTAssertEqual(record.bedtimeConfirmedAt, secondDate)
+        XCTAssertEqual(record.bedtimeState, .confirmed)
+    }
+
+    // MARK: - Category C: Undo & Window Warning
+
+    func testUndoBedtimeWithinFiveMinutesSucceeds() throws {
+        let store = try SleepDataStore(inMemory: true)
+        let confirmDate = TestCalendar.date("2026-06-04T14:45:00Z")
+        let undoDate = TestCalendar.date("2026-06-04T14:47:00Z")
+        var currentDate = confirmDate
+        let viewModel = BedtimeViewModel(
+            scheduleSnapshot: snapshot,
+            localDay: localDay,
+            calendar: calendar,
+            dataStore: store,
+            now: { currentDate }
+        )
+
+        XCTAssertTrue(viewModel.confirmBedtime())
+        XCTAssertTrue(viewModel.hasConfirmedBedtime)
+
+        currentDate = undoDate
+        XCTAssertTrue(viewModel.undoBedtime())
+
+        let record = try XCTUnwrap(store.record(for: localDay, calendar: calendar))
+        XCTAssertNil(record.bedtimeConfirmedAt)
+        XCTAssertFalse(viewModel.hasConfirmedBedtime)
+    }
+
+    func testUndoBedtimeAfterFiveMinutesFails() throws {
+        let store = try SleepDataStore(inMemory: true)
+        let confirmDate = TestCalendar.date("2026-06-04T14:45:00Z")
+        let undoDate = TestCalendar.date("2026-06-04T14:51:00Z")
+        var currentDate = confirmDate
+        let viewModel = BedtimeViewModel(
+            scheduleSnapshot: snapshot,
+            localDay: localDay,
+            calendar: calendar,
+            dataStore: store,
+            now: { currentDate }
+        )
+
+        XCTAssertTrue(viewModel.confirmBedtime())
+        XCTAssertTrue(viewModel.hasConfirmedBedtime)
+
+        currentDate = undoDate
+        XCTAssertFalse(viewModel.undoBedtime())
+
+        let record = try XCTUnwrap(store.record(for: localDay, calendar: calendar))
+        XCTAssertEqual(record.bedtimeConfirmedAt, confirmDate)
+    }
+
+    func testConfirmBedtimeWithinWindowSetsNoWarning() throws {
+        let store = try SleepDataStore(inMemory: true)
+        // 22:30 Shanghai = 14:30 UTC — within 2h window for 23:00 bedtime
+        let confirmDate = TestCalendar.date("2026-06-04T14:30:00Z")
+        let viewModel = BedtimeViewModel(
+            scheduleSnapshot: snapshot,
+            localDay: localDay,
+            calendar: calendar,
+            dataStore: store,
+            now: { confirmDate }
+        )
+
+        XCTAssertTrue(viewModel.confirmBedtime())
+        XCTAssertNil(viewModel.windowWarning)
+    }
+
+    func testConfirmBedtimeTooEarlySetsWarningButStillConfirms() throws {
+        let store = try SleepDataStore(inMemory: true)
+        // 20:00 Shanghai = 12:00 UTC — 3h before bedtime, outside 2h window
+        let confirmDate = TestCalendar.date("2026-06-04T12:00:00Z")
+        let viewModel = BedtimeViewModel(
+            scheduleSnapshot: snapshot,
+            localDay: localDay,
+            calendar: calendar,
+            dataStore: store,
+            now: { confirmDate }
+        )
+
+        XCTAssertTrue(viewModel.confirmBedtime())
+        XCTAssertNotNil(viewModel.windowWarning)
+        XCTAssertTrue(viewModel.hasConfirmedBedtime)
+    }
+
     private var calendar: Calendar {
         TestCalendar.make()
     }

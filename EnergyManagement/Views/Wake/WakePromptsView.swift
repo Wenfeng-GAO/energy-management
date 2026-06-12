@@ -23,15 +23,21 @@ struct WakeCompleteView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var awake = false
     let prompts: [String]
+    let canUndo: Bool
+    let onUndo: (() -> Void)?
     let onHome: () -> Void
     let onReports: () -> Void
 
     init(
         prompts: [String] = ["喝几口水", "拉开窗帘，让房间变亮", "站起来活动一分钟"],
+        canUndo: Bool = false,
+        onUndo: (() -> Void)? = nil,
         onHome: @escaping () -> Void = {},
         onReports: @escaping () -> Void = {}
     ) {
         self.prompts = prompts
+        self.canUndo = canUndo
+        self.onUndo = onUndo
         self.onHome = onHome
         self.onReports = onReports
     }
@@ -61,6 +67,12 @@ struct WakeCompleteView: View {
                 .foregroundStyle(ColorTokens.secondaryText)
 
             WakePromptsView(prompts: prompts)
+
+            if canUndo, let onUndo {
+                Button("撤回") { onUndo() }
+                    .buttonStyle(SecondaryActionButton())
+                    .accessibilityIdentifier("undoWakeButton")
+            }
 
             Button("回到首页", action: onHome)
                 .buttonStyle(SecondaryActionButton())

@@ -122,4 +122,15 @@ final class SleepRecord {
         missedWakeMarkedAt = date
         updatedAt = Date()
     }
+
+    func revokeBedtime() {
+        bedtimeConfirmedAt = nil
+        updatedAt = Date()
+    }
+
+    func revokeWake() {
+        wakeConfirmedAt = nil
+        missedWakeMarkedAt = nil
+        updatedAt = Date()
+    }
 }

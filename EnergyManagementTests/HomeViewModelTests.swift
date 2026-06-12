@@ -56,6 +56,85 @@ final class HomeViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.notificationPrompt, "通知未开启，但不会阻止应用内仪式。")
     }
 
+    // MARK: - Category B: State Flow Completeness
+
+    func testBedtimeConfirmedButWakeNeverConfirmedStateTransition() {
+        let calendar = TestCalendar.make()
+        let localDay = TestCalendar.date("2026-06-04T00:00:00+08:00")
+        let record = SleepRecord(
+            localDay: localDay,
+            scheduleSnapshot: snapshot(),
+            bedtimeConfirmedAt: TestCalendar.date("2026-06-03T23:05:00+08:00"),
+            wakeConfirmedAt: nil,
+            calendar: calendar
+        )
+
+        let viewModel = HomeViewModel.make(
+            scheduleSnapshot: snapshot(),
+            notificationStatus: NotificationStatus(authorizationState: .authorized),
+            now: TestCalendar.date("2026-06-04T09:00:00+08:00"),
+            localDay: localDay,
+            record: record,
+            calendar: calendar
+        )
+
+        XCTAssertEqual(viewModel.ritualState, .missedWakeConfirmation)
+    }
+
+    // MARK: - Category D: HomeViewModel Blind Spots
+
+    func testHomeStateAfterBedtimeButBeforeWakeWindowWithNoRecord() {
+        let viewModel = HomeViewModel.make(
+            scheduleSnapshot: snapshot(),
+            notificationStatus: NotificationStatus(authorizationState: .authorized),
+            now: TestCalendar.date("2026-06-04T01:00:00+08:00"),
+            localDay: TestCalendar.date("2026-06-04T00:00:00+08:00"),
+            calendar: TestCalendar.make()
+        )
+
+        XCTAssertEqual(viewModel.ritualState, .waiting)
+    }
+
+    func testHomeStateAfterWakeWindowClosedWithNoRecord() {
+        let viewModel = HomeViewModel.make(
+            scheduleSnapshot: snapshot(),
+            notificationStatus: NotificationStatus(authorizationState: .authorized),
+            now: TestCalendar.date("2026-06-04T10:00:00+08:00"),
+            localDay: TestCalendar.date("2026-06-04T00:00:00+08:00"),
+            calendar: TestCalendar.make()
+        )
+
+        XCTAssertEqual(viewModel.ritualState, .waiting)
+    }
+
+    func testHomeStateExactlyAtBedtimeTime() {
+        let viewModel = HomeViewModel.make(
+            scheduleSnapshot: snapshot(),
+            notificationStatus: NotificationStatus(authorizationState: .authorized),
+            now: TestCalendar.date("2026-06-04T23:00:00+08:00"),
+            localDay: TestCalendar.date("2026-06-04T00:00:00+08:00"),
+            calendar: TestCalendar.make()
+        )
+
+        XCTAssertEqual(viewModel.ritualState, .bedtimePreparation)
+    }
+
+    func testHomeStateOneSecondAfterBedtime() {
+        let calendar = TestCalendar.make()
+        let bedtimeExact = TestCalendar.date("2026-06-04T23:00:00+08:00")
+        let oneSecondAfter = bedtimeExact.addingTimeInterval(1)
+
+        let viewModel = HomeViewModel.make(
+            scheduleSnapshot: snapshot(),
+            notificationStatus: NotificationStatus(authorizationState: .authorized),
+            now: oneSecondAfter,
+            localDay: TestCalendar.date("2026-06-04T00:00:00+08:00"),
+            calendar: calendar
+        )
+
+        XCTAssertEqual(viewModel.ritualState, .waiting)
+    }
+
     private func snapshot() -> ScheduleSnapshot {
         ScheduleSnapshot(
             bedtime: ClockTime(hour: 23, minute: 0),

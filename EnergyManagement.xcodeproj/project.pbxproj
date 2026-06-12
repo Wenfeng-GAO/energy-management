@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02A1B3C4D5E6F7081920AAAA /* BedtimeWindowPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A1B3C4D5E6F7081920BBBB /* BedtimeWindowPolicy.swift */; };
+		02A1B3C4D5E6F7081920CCCC /* BedtimeWindowPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A1B3C4D5E6F7081920DDDD /* BedtimeWindowPolicyTests.swift */; };
+		03CF8A1B2D4E9F7A81B63C50 /* CrossMidnightAndTimezoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3B5E91C0D847F2A6E8D104 /* CrossMidnightAndTimezoneTests.swift */; };
 		05A3582CF138DBB34362A1E5 /* TestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8200E0E97463A1311A487D7 /* TestSupport.swift */; };
 		0BDEDD6BADAECF69FF82B1D1 /* PrimaryActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8660C1378564F107874EC7A /* PrimaryActionButton.swift */; };
 		0D4E713E726732D983723168 /* NotificationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312245DDB3BA1DF4B825E4EF /* NotificationStatus.swift */; };
@@ -14,6 +17,7 @@
 		1BEC72E0172B2C73397029B9 /* NotificationPermissionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6086B298814033C5B6BA81 /* NotificationPermissionService.swift */; };
 		26AA04C4DA86283935C47673 /* BedtimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D290440FA9F6B188E2DB9D2 /* BedtimeViewModel.swift */; };
 		36B7FDB1DACFA0B7DD8AD3A3 /* TypographyTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF038605A183597D0532ED9 /* TypographyTokens.swift */; };
+		3A1F7E82C9D04B1A5E6F8D01 /* HappyPathIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1F7E82C9D04B1A5E6F8D02 /* HappyPathIntegrationTests.swift */; };
 		3BAE626BDE30757613F85A34 /* SetupViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5DBE304B2B359A6D514DB7 /* SetupViewModelTests.swift */; };
 		447A001509DEEB782153ACA5 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9A9637D05C2FA7E7D46585 /* OnboardingView.swift */; };
 		48D56FF58281328D475C6E81 /* DailyReportCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A9DB33A369E7D6FFE13889 /* DailyReportCard.swift */; };
@@ -83,7 +87,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02A1B3C4D5E6F7081920BBBB /* BedtimeWindowPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BedtimeWindowPolicy.swift; sourceTree = "<group>"; };
+		02A1B3C4D5E6F7081920DDDD /* BedtimeWindowPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BedtimeWindowPolicyTests.swift; sourceTree = "<group>"; };
 		04B1A78DC563BAC2677641D6 /* ReportEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportEmptyStateView.swift; sourceTree = "<group>"; };
+		7A3B5E91C0D847F2A6E8D104 /* CrossMidnightAndTimezoneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossMidnightAndTimezoneTests.swift; sourceTree = "<group>"; };
 		0B7937452F41CA938B5FD6ED /* StatusBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBanner.swift; sourceTree = "<group>"; };
 		0D5DBE304B2B359A6D514DB7 /* SetupViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewModelTests.swift; sourceTree = "<group>"; };
 		0D6086B298814033C5B6BA81 /* NotificationPermissionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissionService.swift; sourceTree = "<group>"; };
@@ -91,6 +98,7 @@
 		12B4D43CC0B6BF593854BA85 /* SleepDataStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDataStoreTests.swift; sourceTree = "<group>"; };
 		165403EB9033FD8E9BCC0EDF /* SleepNotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepNotificationScheduler.swift; sourceTree = "<group>"; };
 		18BB6F44B2C2CFEE4DF32041 /* EnergyManagementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyManagementTests.swift; sourceTree = "<group>"; };
+		3A1F7E82C9D04B1A5E6F8D02 /* HappyPathIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyPathIntegrationTests.swift; sourceTree = "<group>"; };
 		192C5C8C019DC26C676B65C9 /* WakeConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeConfirmationView.swift; sourceTree = "<group>"; };
 		1E5364FF92CF49173C2FEFCB /* SleepNotificationSchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepNotificationSchedulerTests.swift; sourceTree = "<group>"; };
 		312245DDB3BA1DF4B825E4EF /* NotificationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationStatus.swift; sourceTree = "<group>"; };
@@ -249,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				C52D4993E1A8AFD86F476519 /* .gitkeep */,
+				02A1B3C4D5E6F7081920BBBB /* BedtimeWindowPolicy.swift */,
 				0D6086B298814033C5B6BA81 /* NotificationPermissionService.swift */,
 				449480EA4D1CBECDCF572C90 /* NotificationRouteResolver.swift */,
 				3471F6C402FB7B63FD628113 /* SleepDataStore.swift */,
@@ -311,7 +320,10 @@
 			isa = PBXGroup;
 			children = (
 				6F7B1811BC28DF3A34C38B15 /* BedtimeViewModelTests.swift */,
+				02A1B3C4D5E6F7081920DDDD /* BedtimeWindowPolicyTests.swift */,
+				7A3B5E91C0D847F2A6E8D104 /* CrossMidnightAndTimezoneTests.swift */,
 				18BB6F44B2C2CFEE4DF32041 /* EnergyManagementTests.swift */,
+				3A1F7E82C9D04B1A5E6F8D02 /* HappyPathIntegrationTests.swift */,
 				FF8DFF13D9D811ED3588C35C /* HomeViewModelTests.swift */,
 				7856CF22E4AB640266A535CD /* NotificationPermissionServiceTests.swift */,
 				3805054A5B007922DFFCCF85 /* NotificationRouteResolverTests.swift */,
@@ -453,7 +465,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C73ECEA96141EC5E8ADE06BA /* BedtimeViewModelTests.swift in Sources */,
+				02A1B3C4D5E6F7081920CCCC /* BedtimeWindowPolicyTests.swift in Sources */,
+				03CF8A1B2D4E9F7A81B63C50 /* CrossMidnightAndTimezoneTests.swift in Sources */,
 				91653208E191813572BE5A31 /* EnergyManagementTests.swift in Sources */,
+				3A1F7E82C9D04B1A5E6F8D01 /* HappyPathIntegrationTests.swift in Sources */,
 				7F934DCAFCDEE8909AF143AB /* HomeViewModelTests.swift in Sources */,
 				11B30EB070428FD76906B6F0 /* NotificationPermissionServiceTests.swift in Sources */,
 				FE072B34492F85344DAC28B7 /* NotificationRouteResolverTests.swift in Sources */,
@@ -476,6 +491,7 @@
 				77CEF78AD731B98D84CD7B9E /* AppSurface.swift in Sources */,
 				7C93DB44A5F5ED41B0E2EB7E /* BedtimePreparationView.swift in Sources */,
 				26AA04C4DA86283935C47673 /* BedtimeViewModel.swift in Sources */,
+				02A1B3C4D5E6F7081920AAAA /* BedtimeWindowPolicy.swift in Sources */,
 				B86FEDC37B3789F09F08803F /* ColorTokens.swift in Sources */,
 				8E74CF891D2AA001B136F6C2 /* ContentView.swift in Sources */,
 				48D56FF58281328D475C6E81 /* DailyReportCard.swift in Sources */,
