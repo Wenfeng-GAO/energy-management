@@ -21,23 +21,17 @@ struct WakePromptsView: View {
 
 struct WakeCompleteView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @ObservedObject var viewModel: WakeViewModel
     @State private var awake = false
-    let prompts: [String]
-    let canUndo: Bool
-    let onUndo: (() -> Void)?
     let onHome: () -> Void
     let onReports: () -> Void
 
     init(
-        prompts: [String] = ["喝几口水", "拉开窗帘，让房间变亮", "站起来活动一分钟"],
-        canUndo: Bool = false,
-        onUndo: (() -> Void)? = nil,
+        viewModel: WakeViewModel,
         onHome: @escaping () -> Void = {},
         onReports: @escaping () -> Void = {}
     ) {
-        self.prompts = prompts
-        self.canUndo = canUndo
-        self.onUndo = onUndo
+        self.viewModel = viewModel
         self.onHome = onHome
         self.onReports = onReports
     }
@@ -66,10 +60,10 @@ struct WakeCompleteView: View {
                 .font(TypographyTokens.body)
                 .foregroundStyle(ColorTokens.secondaryText)
 
-            WakePromptsView(prompts: prompts)
+            WakePromptsView(prompts: viewModel.prompts)
 
-            if canUndo, let onUndo {
-                Button("撤回") { onUndo() }
+            if viewModel.canUndoWake {
+                Button("撤回") { _ = viewModel.undoWake() }
                     .buttonStyle(SecondaryActionButton())
                     .accessibilityIdentifier("undoWakeButton")
             }
@@ -89,6 +83,9 @@ struct WakeCompleteView: View {
             withAnimation(.spring(response: 0.98, dampingFraction: 0.78)) {
                 awake = true
             }
+        }
+        .onChange(of: viewModel.state) { _, newState in
+            if newState == .confirmationAvailable { onHome() }
         }
         .accessibilityIdentifier("wakeComplete")
     }

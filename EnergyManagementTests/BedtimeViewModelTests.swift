@@ -151,7 +151,7 @@ final class BedtimeViewModelTests: XCTestCase {
     }
 
     private var localDay: Date {
-        TestCalendar.date("2026-06-03T16:00:00Z")
+        TestCalendar.date("2026-06-04T16:00:00Z")
     }
 
     private var snapshot: ScheduleSnapshot {

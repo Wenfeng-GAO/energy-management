@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @AppStorage("hasCompletedInitialSetup") private var hasCompletedInitialSetup = false
+    @EnvironmentObject private var navigationState: NavigationState
     @State private var isShowingScheduleSetup = false
     @State private var route: AppRoute
     @State private var bedtimeViewModel: BedtimeViewModel?
@@ -28,6 +29,11 @@ struct ContentView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(ColorTokens.warmWhite)
+        .onChange(of: navigationState.pendingRoute) { _, newRoute in
+            guard let newRoute else { return }
+            route = newRoute
+            navigationState.pendingRoute = nil
+        }
     }
 
     @ViewBuilder
@@ -60,12 +66,7 @@ struct ContentView: View {
             }
         case .sleepComplete:
             SleepCompleteView(
-                canUndo: bedtimeViewModel?.canUndoBedtime ?? false,
-                onUndo: {
-                    if bedtimeViewModel?.undoBedtime() == true {
-                        route = .bedtimePreparation
-                    }
-                },
+                viewModel: getOrCreateBedtimeViewModel(),
                 onDone: {
                     bedtimeViewModel = nil
                     route = .home(.normal)
@@ -80,12 +81,7 @@ struct ContentView: View {
             }
         case .wakeComplete:
             WakeCompleteView(
-                canUndo: wakeViewModel?.canUndoWake ?? false,
-                onUndo: {
-                    if wakeViewModel?.undoWake() == true {
-                        route = .wakeConfirmation
-                    }
-                },
+                viewModel: getOrCreateWakeViewModel(),
                 onHome: {
                     wakeViewModel = nil
                     route = .home(.normal)

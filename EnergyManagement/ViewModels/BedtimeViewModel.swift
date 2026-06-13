@@ -60,9 +60,14 @@ final class BedtimeViewModel: ObservableObject {
             prepLeadMinutes: 30,
             timeZoneIdentifier: TimeZone.current.identifier
         )
+        var calendar = Calendar.current
+        if let timeZone = TimeZone(identifier: snapshot.timeZoneIdentifier) {
+            calendar.timeZone = timeZone
+        }
+        let localDay = calendar.startOfDay(for: Date())
         return BedtimeViewModel(
             scheduleSnapshot: snapshot,
-            localDay: Date(),
+            localDay: localDay,
             dataStore: store
         )
     }

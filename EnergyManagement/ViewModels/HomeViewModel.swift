@@ -65,11 +65,16 @@ struct HomeViewModel: Equatable {
             ? NotificationStatus(authorizationState: .denied)
             : NotificationStatus(authorizationState: .authorized)
         let now = Date()
+        var calendar = Calendar.current
+        if let timeZone = TimeZone(identifier: snapshot.timeZoneIdentifier) {
+            calendar.timeZone = timeZone
+        }
+        let localDay = calendar.startOfDay(for: now)
         let viewModel = make(
             scheduleSnapshot: snapshot,
             notificationStatus: notificationStatus,
             now: now,
-            localDay: now,
+            localDay: localDay,
             record: record
         )
         if context == .missedWake {

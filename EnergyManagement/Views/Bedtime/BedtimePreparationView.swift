@@ -118,16 +118,14 @@ struct BedtimePreparationView: View {
 
 struct SleepCompleteView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @ObservedObject var viewModel: BedtimeViewModel
     @State private var settled = false
     let wakeText: String
-    let canUndo: Bool
-    let onUndo: (() -> Void)?
     let onDone: () -> Void
 
-    init(wakeText: String? = nil, canUndo: Bool = false, onUndo: (() -> Void)? = nil, onDone: @escaping () -> Void) {
+    init(viewModel: BedtimeViewModel, wakeText: String? = nil, onDone: @escaping () -> Void) {
+        self.viewModel = viewModel
         self.wakeText = wakeText ?? Self.liveWakeText()
-        self.canUndo = canUndo
-        self.onUndo = onUndo
         self.onDone = onDone
     }
 
@@ -171,8 +169,8 @@ struct SleepCompleteView: View {
             .overlay(alignment: .top) { Divider().background(ColorTokens.warmWhite.opacity(0.16)) }
             .overlay(alignment: .bottom) { Divider().background(ColorTokens.warmWhite.opacity(0.16)) }
 
-            if canUndo, let onUndo {
-                Button("撤回") { onUndo() }
+            if viewModel.canUndoBedtime {
+                Button("撤回") { _ = viewModel.undoBedtime() }
                     .buttonStyle(SecondaryActionButton())
                     .accessibilityIdentifier("undoBedtimeButton")
             }
@@ -188,6 +186,9 @@ struct SleepCompleteView: View {
             withAnimation(.easeOut(duration: 2.2)) {
                 settled = true
             }
+        }
+        .onChange(of: viewModel.hasConfirmedBedtime) { _, confirmed in
+            if !confirmed { onDone() }
         }
         .accessibilityIdentifier("sleepComplete")
     }
