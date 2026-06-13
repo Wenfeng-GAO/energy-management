@@ -35,6 +35,14 @@ struct WakeWindowPolicy {
         return scheduleSnapshot.wakeTime.date(on: localDay, calendar: calendar)
     }
 
+    func isTargetWakeDSTAdjusted(localDay: Date, scheduleSnapshot: ScheduleSnapshot) -> Bool {
+        var calendar = calendar
+        if let timeZone = TimeZone(identifier: scheduleSnapshot.timeZoneIdentifier) {
+            calendar.timeZone = timeZone
+        }
+        return scheduleSnapshot.wakeTime.resolvedDate(on: localDay, calendar: calendar).wasAdjustedForDST
+    }
+
     func decision(for confirmationDate: Date, record: SleepRecord) -> WakeWindowDecision {
         decision(
             for: confirmationDate,

@@ -10,24 +10,21 @@ struct NotificationRouteResolver {
     func route(
         notificationIdentifier: String,
         currentDate: Date,
+        localDay: Date,
+        scheduleSnapshot: ScheduleSnapshot?,
         record: SleepRecord?
     ) -> AppRoute {
         switch notificationIdentifier {
         case SleepNotificationScheduler.bedtimePreparationIdentifier:
             return .bedtimePreparation
         case SleepNotificationScheduler.wakeIdentifier:
-            guard let record else {
-                return .home(.normal)
-            }
-            return wakeWindowPolicy.contains(currentDate, record: record)
-                ? .wakeConfirmation
-                : .home(.missedWake)
+            return wakeRoute(currentDate: currentDate, localDay: localDay, scheduleSnapshot: scheduleSnapshot, record: record)
         default:
             return .home(.normal)
         }
     }
 
-    func route(userInfo: [AnyHashable: Any], currentDate: Date, record: SleepRecord?) -> AppRoute {
+    func route(userInfo: [AnyHashable: Any], currentDate: Date, localDay: Date, scheduleSnapshot: ScheduleSnapshot?, record: SleepRecord?) -> AppRoute {
         guard let kind = userInfo[SleepNotificationScheduler.userInfoKindKey] as? String else {
             return .home(.normal)
         }
@@ -36,14 +33,36 @@ struct NotificationRouteResolver {
         case .bedtimePreparation:
             return .bedtimePreparation
         case .wake:
-            guard let record else {
-                return .home(.normal)
-            }
+            return wakeRoute(currentDate: currentDate, localDay: localDay, scheduleSnapshot: scheduleSnapshot, record: record)
+        case nil:
+            return .home(.normal)
+        }
+    }
+
+    private func wakeRoute(currentDate: Date, localDay: Date, scheduleSnapshot: ScheduleSnapshot?, record: SleepRecord?) -> AppRoute {
+        if let record {
             return wakeWindowPolicy.contains(currentDate, record: record)
                 ? .wakeConfirmation
                 : .home(.missedWake)
-        case nil:
-            return .home(.normal)
+        }
+
+        guard let scheduleSnapshot else {
+            return .wakeConfirmation
+        }
+
+        let decision = wakeWindowPolicy.decision(
+            for: currentDate,
+            localDay: localDay,
+            scheduleSnapshot: scheduleSnapshot
+        )
+
+        switch decision {
+        case .acceptedEarly, .acceptedOnTime, .acceptedLate:
+            return .wakeConfirmation
+        case .rejectedTooEarly:
+            return .wakeConfirmation
+        case .rejectedTooLate:
+            return .home(.missedWake)
         }
     }
 }

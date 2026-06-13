@@ -18,7 +18,7 @@ final class SleepNotificationSchedulerTests: XCTestCase {
         XCTAssertEqual(requests.first(where: { $0.kind == .bedtimePreparation })?.hour, 22)
         XCTAssertEqual(requests.first(where: { $0.kind == .bedtimePreparation })?.minute, 30)
         XCTAssertEqual(requests.first(where: { $0.kind == .wake })?.hour, 6)
-        XCTAssertEqual(requests.first(where: { $0.kind == .wake })?.minute, 55)
+        XCTAssertEqual(requests.first(where: { $0.kind == .wake })?.minute, 30)
         XCTAssertEqual(client.removedIdentifiers, [
             SleepNotificationScheduler.bedtimePreparationIdentifier,
             SleepNotificationScheduler.wakeIdentifier
@@ -45,7 +45,7 @@ final class SleepNotificationSchedulerTests: XCTestCase {
 
         XCTAssertEqual(client.removedIdentifiers.filter { $0 == SleepNotificationScheduler.wakeIdentifier }.count, 2)
         XCTAssertEqual(client.addedRequests.last(where: { $0.kind == .wake })?.hour, 6)
-        XCTAssertEqual(client.addedRequests.last(where: { $0.kind == .wake })?.minute, 25)
+        XCTAssertEqual(client.addedRequests.last(where: { $0.kind == .wake })?.minute, 0)
     }
 
     func testSchedulerFailureReturnsReadableStatus() async {
@@ -63,7 +63,7 @@ final class SleepNotificationSchedulerTests: XCTestCase {
         XCTAssertEqual(status.message, "提醒暂时无法保存，请稍后再试。")
     }
 
-    func testWakeReminderFiringFiveMinutesBeforeTargetWake() {
+    func testWakeReminderFiringThirtyMinutesBeforeTargetWake() {
         let scheduler = SleepNotificationScheduler(client: FakeNotificationSchedulingClient())
 
         let normalSnapshot = ScheduleSnapshot(
@@ -75,18 +75,18 @@ final class SleepNotificationSchedulerTests: XCTestCase {
         let normalRequests = scheduler.dailyReminderRequests(for: normalSnapshot)
         let normalWake = normalRequests.first(where: { $0.kind == .wake })!
         XCTAssertEqual(normalWake.hour, 6)
-        XCTAssertEqual(normalWake.minute, 55)
+        XCTAssertEqual(normalWake.minute, 30)
 
         let wrapSnapshot = ScheduleSnapshot(
             bedtime: ClockTime(hour: 23, minute: 0),
-            wakeTime: ClockTime(hour: 0, minute: 3),
+            wakeTime: ClockTime(hour: 0, minute: 10),
             prepLeadMinutes: 30,
             timeZoneIdentifier: "Asia/Shanghai"
         )
         let wrapRequests = scheduler.dailyReminderRequests(for: wrapSnapshot)
         let wrapWake = wrapRequests.first(where: { $0.kind == .wake })!
         XCTAssertEqual(wrapWake.hour, 23)
-        XCTAssertEqual(wrapWake.minute, 58)
+        XCTAssertEqual(wrapWake.minute, 40)
     }
 }
 

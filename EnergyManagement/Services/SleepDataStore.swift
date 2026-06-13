@@ -35,13 +35,16 @@ final class SleepDataStore {
     }
 
     func record(for localDay: Date, calendar inputCalendar: Calendar = .current) throws -> SleepRecord? {
-        let normalizedDay = inputCalendar.startOfDay(for: localDay)
-        let descriptor = FetchDescriptor<SleepRecord>(
+        let dayStart = inputCalendar.startOfDay(for: localDay)
+        guard let dayEnd = inputCalendar.date(byAdding: .day, value: 1, to: dayStart) else {
+            return nil
+        }
+        var descriptor = FetchDescriptor<SleepRecord>(
+            predicate: #Predicate { $0.localDay >= dayStart && $0.localDay < dayEnd },
             sortBy: [SortDescriptor(\.localDay, order: .forward)]
         )
-        return try modelContext.fetch(descriptor).first { record in
-            inputCalendar.isDate(record.localDay, inSameDayAs: normalizedDay)
-        }
+        descriptor.fetchLimit = 1
+        return try modelContext.fetch(descriptor).first
     }
 
     func records() throws -> [SleepRecord] {

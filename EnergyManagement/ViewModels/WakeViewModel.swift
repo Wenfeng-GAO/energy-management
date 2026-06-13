@@ -13,6 +13,7 @@ final class WakeViewModel: ObservableObject {
     @Published private(set) var statusMessage: String
     @Published private(set) var errorMessage: String?
     @Published private(set) var canUndoWake = false
+    @Published private(set) var dstWarning: String?
 
     let prompts: [String]
 
@@ -60,6 +61,10 @@ final class WakeViewModel: ObservableObject {
         )
         self.state = initialState
         self.statusMessage = Self.message(for: initialState)
+
+        if self.wakeWindowPolicy.isTargetWakeDSTAdjusted(localDay: localDay, scheduleSnapshot: scheduleSnapshot) {
+            self.dstWarning = "今天的起床时间因夏令时调整发生了变化。"
+        }
     }
 
     static func live() -> WakeViewModel {

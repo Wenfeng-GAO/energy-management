@@ -20,6 +20,21 @@ struct ClockTime: Codable, Equatable, Hashable {
         let startOfDay = inputCalendar.startOfDay(for: day)
         return inputCalendar.date(bySettingHour: hour, minute: minute, second: 0, of: startOfDay) ?? startOfDay
     }
+
+    struct ResolvedTime {
+        let date: Date
+        let wasAdjustedForDST: Bool
+    }
+
+    /// Returns the resolved date and whether DST caused an adjustment.
+    /// When the requested time falls in a DST gap (e.g., 2:30 AM during spring-forward),
+    /// the system resolves to the transition point. This method detects that discrepancy.
+    func resolvedDate(on day: Date, calendar inputCalendar: Calendar) -> ResolvedTime {
+        let resolved = date(on: day, calendar: inputCalendar)
+        let components = inputCalendar.dateComponents([.hour, .minute], from: resolved)
+        let adjusted = components.hour != hour || components.minute != minute
+        return ResolvedTime(date: resolved, wasAdjustedForDST: adjusted)
+    }
 }
 
 struct ScheduleSnapshot: Codable, Equatable, Hashable {

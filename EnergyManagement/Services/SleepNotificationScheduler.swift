@@ -60,7 +60,7 @@ struct SleepNotificationScheduler {
     static let bedtimePreparationIdentifier = "sleep.bedtimePreparation.daily"
     static let wakeIdentifier = "sleep.wake.daily"
     static let userInfoKindKey = "sleepNotificationKind"
-    static let wakeLeadMinutes = 5
+    static let wakeLeadMinutes = 30
 
     private let client: SleepNotificationSchedulingClient
 

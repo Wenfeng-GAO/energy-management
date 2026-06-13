@@ -38,7 +38,7 @@ final class HappyPathIntegrationTests: XCTestCase {
         XCTAssertEqual(savedSchedule.prepLeadMinutes, 30)
         XCTAssertEqual(scheduler.snapshots.count, 1, "Scheduler should be called once")
 
-        // Step 4: Verify notification times — bedtime prep at 22:30, wake at 06:55
+        // Step 4: Verify notification times — bedtime prep at 22:30, wake at 06:30
         let scheduledSnapshot = try XCTUnwrap(scheduler.snapshots.first)
         let notificationScheduler = SleepNotificationScheduler(client: FakeNotificationClient())
         let requests = notificationScheduler.dailyReminderRequests(for: scheduledSnapshot)
@@ -48,8 +48,8 @@ final class HappyPathIntegrationTests: XCTestCase {
         XCTAssertEqual(bedtimePrepRequest.minute, 30, "Bedtime prep notification should fire at 22:30")
 
         let wakeRequest = try XCTUnwrap(requests.first(where: { $0.kind == .wake }))
-        XCTAssertEqual(wakeRequest.hour, 6, "Wake notification should fire at 06:55 (5 min before target)")
-        XCTAssertEqual(wakeRequest.minute, 55, "Wake notification should fire at 06:55 (5 min before target)")
+        XCTAssertEqual(wakeRequest.hour, 6, "Wake notification should fire at 06:30 (30 min before target)")
+        XCTAssertEqual(wakeRequest.minute, 30, "Wake notification should fire at 06:30 (30 min before target)")
 
         // Step 5: HomeViewModel at 22:35 -> verify .bedtimePreparation state
         let snapshot = savedSchedule.snapshot
@@ -175,16 +175,16 @@ final class HappyPathIntegrationTests: XCTestCase {
         XCTAssertTrue(bedtimePrepRequest.repeatsDaily)
         XCTAssertEqual(bedtimePrepRequest.identifier, SleepNotificationScheduler.bedtimePreparationIdentifier)
 
-        // Wake: 07:00 - 5 min = 06:55 (wakeLeadMinutes = 5)
+        // Wake: 07:00 - 30 min = 06:30 (wakeLeadMinutes = 30)
         let wakeRequest = try XCTUnwrap(requests.first(where: { $0.kind == .wake }))
         XCTAssertEqual(wakeRequest.hour, 6)
-        XCTAssertEqual(wakeRequest.minute, 55)
+        XCTAssertEqual(wakeRequest.minute, 30)
         XCTAssertTrue(wakeRequest.repeatsDaily)
         XCTAssertEqual(wakeRequest.identifier, SleepNotificationScheduler.wakeIdentifier)
 
-        // Verify the 5-minute lead is a constant
-        XCTAssertEqual(SleepNotificationScheduler.wakeLeadMinutes, 5,
-                       "Wake notification should always fire exactly 5 minutes before target wake time")
+        // Verify the 30-minute lead is a constant
+        XCTAssertEqual(SleepNotificationScheduler.wakeLeadMinutes, 30,
+                       "Wake notification should fire exactly 30 minutes before target wake time")
     }
 }
 

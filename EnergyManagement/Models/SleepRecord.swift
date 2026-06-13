@@ -15,6 +15,9 @@ enum WakeConfirmationState: String, Codable, Equatable {
 @Model
 final class SleepRecord {
     @Attribute(.unique) var id: UUID
+    /// The calendar date this record belongs to, normalized to startOfDay in the schedule's timezone.
+    /// Always represents the date on which the wake window occurs (not the bedtime date).
+    /// For bedtime 23:00 / wake 07:00, a record with localDay June 4 means bedtime on June 3 evening, wake on June 4 morning.
     var localDay: Date
     var timeZoneIdentifier: String
     var scheduledBedtimeHour: Int
