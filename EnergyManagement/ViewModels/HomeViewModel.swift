@@ -61,9 +61,12 @@ struct HomeViewModel: Equatable {
         )
         let records = (try? store?.records()) ?? []
         let record = records.sorted { $0.localDay < $1.localDay }.last
-        let notificationStatus = ProcessInfo.processInfo.arguments.contains("-homeNotificationDenied")
-            ? NotificationStatus(authorizationState: .denied)
-            : NotificationStatus(authorizationState: .authorized)
+        let notificationStatus: NotificationStatus
+        if ProcessInfo.processInfo.arguments.contains("-homeNotificationDenied") {
+            notificationStatus = NotificationStatus(authorizationState: .denied)
+        } else {
+            notificationStatus = NotificationStatus(authorizationState: .authorized)
+        }
         let now = Date()
         var calendar = Calendar.current
         if let timeZone = TimeZone(identifier: snapshot.timeZoneIdentifier) {

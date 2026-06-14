@@ -1,4 +1,5 @@
 import SwiftUI
+import UserNotifications
 
 struct HomeView: View {
     let viewModel: HomeViewModel
@@ -6,6 +7,8 @@ struct HomeView: View {
     let onStartBedtime: () -> Void
     let onStartWake: () -> Void
     let onShowReports: () -> Void
+
+    @State private var liveNotificationDenied = false
 
     init(
         viewModel: HomeViewModel,
@@ -39,12 +42,14 @@ struct HomeView: View {
                 timePanel(title: "起床", value: viewModel.wakeText, valueIdentifier: "homeWakeValue")
             }
 
-            if let notificationPrompt = viewModel.notificationPrompt {
+            if liveNotificationDenied {
+                notificationDeniedBanner
+            } else if let notificationPrompt = viewModel.notificationPrompt {
                 StatusBanner(notificationPrompt, tone: .warning)
                     .accessibilityIdentifier("homeNotificationPrompt")
             }
 
-            Text("睡前准备 \(viewModel.prepStartText) 开始。\(viewModel.notificationPrompt == nil ? "提醒已计划。" : "提醒未开启。")")
+            Text("睡前准备 \(viewModel.prepStartText) 开始。\(liveNotificationDenied ? "提醒未开启。" : "提醒已计划。")")
                 .font(TypographyTokens.caption)
                 .foregroundStyle(ColorTokens.secondaryText)
 
@@ -72,6 +77,34 @@ struct HomeView: View {
             Spacer()
         }
         .appSurface()
+        .task { await checkNotificationStatus() }
+    }
+
+    private var notificationDeniedBanner: some View {
+        VStack(alignment: .leading, spacing: SpacingTokens.small) {
+            Text("睡前和起床提醒未开启。你不会收到通知，但仍可在 App 内操作。")
+                .font(TypographyTokens.caption)
+                .foregroundStyle(ColorTokens.secondaryText)
+            Button("前往系统设置开启") {
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url)
+                }
+            }
+            .font(TypographyTokens.caption)
+            .foregroundStyle(ColorTokens.paleSage)
+        }
+        .padding(SpacingTokens.medium)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(ColorTokens.paper.opacity(0.84))
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .accessibilityIdentifier("notificationDeniedBanner")
+    }
+
+    private func checkNotificationStatus() async {
+        let settings = await UNUserNotificationCenter.current().notificationSettings()
+        await MainActor.run {
+            liveNotificationDenied = (settings.authorizationStatus == .denied)
+        }
     }
 
     private func timePanel(title: String, value: String, valueIdentifier: String) -> some View {
